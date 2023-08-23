@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:ICR-{MM}-{YY}-{#####}",
+ "creation": "2022-02-28 11:22:36.202187",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_name",
+  "item_group",
+  "stock_item",
+  "asset_item",
+  "asset_category",
+  "is_sales_item",
+  "column_break_4",
+  "unit_of_measure",
+  "remarks",
+  "sales_details_section",
+  "valuation_rate",
+  "column_break_14",
+  "tax_category",
+  "default_sales_income_account",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Group",
+   "options": "Item Group",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "stock_item",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Stock Item"
+  },
+  {
+   "default": "0",
+   "fieldname": "asset_item",
+   "fieldtype": "Check",
+   "label": "Is Asset Item"
+  },
+  {
+   "fieldname": "unit_of_measure",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit of Measure",
+   "options": "UOM",
+   "reqd": 1
+  },
+  {
+   "description": "<p style=\"color: purple;\">If this item will be used in TSF, please mention TAX, or the Item code will not be created.</p>",
+   "fieldname": "tax_category",
+   "fieldtype": "Link",
+   "label": "Item Tax Template",
+   "options": "Item Tax Template"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks/Purpose"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Item Creation Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "description": "Only required when sales item is a STOCK item.",
+   "fieldname": "valuation_rate",
+   "fieldtype": "Float",
+   "label": "Valuation Rate"
+  },
+  {
+   "depends_on": "eval:doc.default_company",
+   "fieldname": "default_sales_income_account",
+   "fieldtype": "Link",
+   "label": "Default Sales Income Account",
+   "mandatory_depends_on": "eval:doc.is_sales_item",
+   "options": "Account"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_sales_item",
+   "fieldtype": "Check",
+   "label": "<b style=\"color: red;\">Is Sales Item</b>"
+  },
+  {
+   "collapsible_depends_on": "eval:doc.is_sales_item",
+   "fieldname": "sales_details_section",
+   "fieldtype": "Section Break",
+   "label": "Sales Details"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.asset_item",
+   "fieldname": "asset_category",
+   "fieldtype": "Link",
+   "label": "Asset Category",
+   "mandatory_depends_on": "eval:doc.asset_item",
+   "options": "Asset Category"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-18 17:40:35.315767",
+ "modified_by": "Administrator",
+ "module": "ERPNext - Custom",
+ "name": "Item Creation Request",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Item & Supplier Creator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "if_owner": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1
+}

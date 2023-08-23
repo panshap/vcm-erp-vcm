@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "creation": "2022-04-16 10:18:50.556653",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "validate_work_order_item",
+  "boq_default_item",
+  "purchase_request_creator_for_stock"
+ ],
+ "fields": [
+  {
+   "fieldname": "boq_default_item",
+   "fieldtype": "Link",
+   "label": "BOQ Default Item",
+   "options": "Item"
+  },
+  {
+   "default": "0",
+   "fieldname": "validate_work_order_item",
+   "fieldtype": "Check",
+   "label": "Validate Work Order Item"
+  },
+  {
+   "fieldname": "purchase_request_creator_for_stock",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Purchase Request Creator For Stock",
+   "options": "Role",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2022-05-15 14:51:14.649948",
+ "modified_by": "Administrator",
+ "module": "ERPNext - Custom",
+ "name": "HKM ERPNext Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

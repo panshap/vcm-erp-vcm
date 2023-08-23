@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --charts-label-color: #313b44;
+    --charts-axis-line-color: #f4f5f6;
+    --charts-tooltip-title: var(--charts-label-color);
+    --charts-tooltip-label: var(--charts-label-color);
+    --charts-tooltip-value: #192734;
+    --charts-tooltip-bg: #ffffff;
+    --charts-stroke-width: 2px;
+    --charts-dataset-circle-stroke: #ffffff;
+    --charts-dataset-circle-stroke-width: var(--charts-stroke-width);
+    --charts-legend-label: var(--charts-label-color);
+    --charts-legend-value: var(--charts-label-color);
+}
+:root {
+    --primary-hue: 277;
+    --secondary-hue: 29;
+    --tertiary-hue: 1;
+    --primary-color: hsl(var(--primary-hue),17%,51%);
+    --secondary-color: hsl(var(--secondary-hue),92%,69%);
+    --tertiary-color: hsl(var(--tertiary-hue),100%,75%);
+    --main-hue: 31;
+    --light-color: hsl(var(--tertiary-hue),100%,70%);
+    --extra-light-color: hsl(var(--tertiary-hue),100%,98%);
+    --double-extra-light-color: hsl(var(--tertiary-hue),100%,100%);
+    --dark-color: var(--primary-color);
+    --extra-dark-color: var(--primary-color);
+    --text-dark: #000;
+    --text-color: #010020;
+    --text-muted: var(--light-color);
+    --text-muted: hsl(214deg 97% 10%);
+    --text-extra-dark: #f0d676;
+    --control-bg-color: hsl(103deg 100% 98%);
+    --header-text-color: var(--text-dark);
+    --border-color: var(--primary-color);
+    --desk-page-bg-color:transparent;
+    --body-bg-color: var(--light-color);
+    --navbar-bg-color: hsl(var(--primary-hue),20%,90%);
+    --navbar-doc-name-color: #000056;
+    --header-bg-color: #fbfbff;
+    --page-head-bg-color: transparent;
+    --footer-bg-color: var(--light-color);
+    // --row-even-bg-color: rgb(241, 246, 255);
+    // --row-odd-bg-color: var(--double-extra-light-color);
+    --navbar-box-shadow-color: hsl(var(--primary-hue),17%,51%);
+    --box-shadow-color: hsl(var(--primary-hue),17%,51%);
+    --page-container-bg-color: var(--extra-light-color);
+    --page-head-bg-color: transparent;
+    --page-form-bg-color: var(--extra-light-color);
+    --form-inner-toolbar-bg-color: var(--light-color);
+    // --form-inner-bg-color: var(--extra-light-color);
+    --form-control-bg-color: rgb(255, 255, 255);
+    --control-label-text-color: var(--text-color);
+    --grid-header-bg-color: var(--header-bg-color);
+    --grid-header-text-color: var(--header-text-color);
+    --grid-border-color: var(--border-color);
+    // --dropdown-menu-bg-color: var(--control-bg-color);
+    // --dropdown-menu-item-even-bg-color: var(--row-even-bg-color);
+    // --dropdown-menu-item-odd-bg-color: var(--row-odd-bg-color);
+    --list-row-header-bg-color: var(--header-bg-color);
+    --focus-bg-color: #ffffff;
+    --form-control-focus-bg-color: var(--focus-bg-color);
+    --form-control-placeholder-bg-color: var(--focus-bg-color);
+    --table-border-color: var(--border-color);
+    --highlight-color: var(--focus-bg-color);
+    // --desk-sidebar-color : #aad2ff;
+    --sidebar-item-label : #ffffff;
+    --icon-stroke: #000a44;
+}

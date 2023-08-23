@@ -1,0 +1,6 @@
+hkm.erpnext___custom.patches.v_0_0_1.add_custom_fields_for_item_group
+hkm.patches.v_0_0.update_suspense_jv_cleared_amount
+hkm.patches.v_0_0.add_custom_field_in_mr_and_po
+hkm.patches.v_0_0.add_item_type_field #2022-06-20
+hkm.patches.v_0_0.update_inward_type_in_ledgers_inward_entry
+hkm.erpnext___custom.patches.refactor.remove_custom_docperms #2023-02-10
