@@ -52,15 +52,7 @@ def get_journal_entry_receipts(filters):
             wrong_je.append(j)
     only_dr_nos = list(set(only_dr_nos))
 
-    # frappe.errprint(only_dr_nos)
-    # frappe.errprint(wrong_je)
-
     pure_dr, old_dr_relation, receipts_data = get_kyc_erp_receipts(filters)
-
-    # frappe.errprint("PURE")
-    # frappe.errprint(pure_dr)
-    # frappe.errprint("Relation")
-    # frappe.errprint(old_dr_relation)
 
     final_data = []
 
