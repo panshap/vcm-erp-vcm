@@ -6,6 +6,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "app",
   "user",
   "token",
   "device_id",
@@ -36,13 +37,19 @@
    "fieldname": "device_name",
    "fieldtype": "Data",
    "label": "Device Name"
+  },
+  {
+   "fieldname": "app",
+   "fieldtype": "Link",
+   "label": "App",
+   "options": "Firebase Admin App"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-06 19:47:07.816618",
+ "modified": "2023-09-18 15:42:40.656021",
  "modified_by": "Administrator",
- "module": "ERPNext - Custom",
+ "module": "Firebase",
  "name": "Firebase App Token",
  "naming_rule": "Autoincrement",
  "owner": "Administrator",
@@ -81,7 +88,6 @@
   },
   {
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -93,6 +99,7 @@
   },
   {
    "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -115,6 +122,7 @@
   },
   {
    "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,

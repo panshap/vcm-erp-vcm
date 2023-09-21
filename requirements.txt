@@ -3,3 +3,4 @@ mysql-connector-python
 pandas
 qrcode
 razorpay
+firebase_admin
