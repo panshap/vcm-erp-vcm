@@ -9,7 +9,7 @@
  "filters": [],
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2023-01-01 20:13:13.161978",
+ "modified": "2023-09-25 17:46:29.806919",
  "modified_by": "Administrator",
  "module": "ERPNext - Custom",
  "name": "ITEM With GST Rate",
@@ -27,10 +27,10 @@
    "role": "Purchase User"
   },
   {
-   "role": "Maintenance User"
+   "role": "MRN Raiser"
   },
   {
-   "role": "Manufacturing User"
+   "role": "MRN Raiser"
   },
   {
    "role": "Stock Manager"
@@ -48,13 +48,16 @@
    "role": "MRN Raiser"
   },
   {
-   "role": "Purchase Recommender"
+   "role": "Purchase Order Approver"
   },
   {
-   "role": "Purchase First Approver"
+   "role": "Purchase Order Approver"
   },
   {
    "role": "Sales Executive"
+  },
+  {
+   "role": "Auditor"
   }
  ]
 }

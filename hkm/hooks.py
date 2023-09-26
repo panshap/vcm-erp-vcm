@@ -99,7 +99,7 @@ permission_query_conditions = {
     "Ashraya Candidate": "hkm.ashraya_base.ashraya_listview_filter.query",
     "DD Wallet Tx": "hkm.divine_dishes.list_view_filter.query",
     "DD Subscription": "hkm.divine_dishes.list_view_filter.query",
-    "DD Order": "hkm.divine_dishes.list_view_filter.query"
+    "DD Order": "hkm.divine_dishes.list_view_filter.query",
 }
 
 # For Company Filters for Particular Users
