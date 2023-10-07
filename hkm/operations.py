@@ -7,64 +7,100 @@ from frappe.utils.nestedset import get_descendants_of
 from frappe.utils import add_to_date, now
 from frappe.desk.page.setup_wizard.setup_wizard import make_records
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
-from dhananjaya.dhananjaya.doctype.dhananjaya_import_settings.utils import run_query
 
 
 @frappe.whitelist()
 def query():
+    return update_depreciations()
     # update_barcodes()
     # update_special_pujas()
     # return upload_mumbai_data()
     # update_current_preacher()
     return
 
+
+def update_depreciations():
+    for temp_entry in frappe.get_all("Temp Data", fields=["*"]):
+        asset_doc = frappe.get_doc("Asset", temp_entry["asset_id"])
+        if asset_doc.docstatus == 1:
+            cancel_dependent_asset_docs(asset_doc)
+            asset_doc.reload()
+            asset_doc.cancel()
+        asset_doc.reload()
+        duplicate_asset = frappe.copy_doc(doc=asset_doc)
+        duplicate_asset.location = "HKM Temple"
+        duplicate_asset.finance_books[0].depreciation_start_date = temp_entry["depreciation_posting_date"]
+        duplicate_asset.finance_books[0].total_number_of_depreciations = temp_entry["total_number_of_dep"]
+        duplicate_asset.finance_books[0].frequency_of_depreciation = temp_entry["frequency_of_dep"]
+        duplicate_asset.save()
+        duplicate_asset.submit()
+        frappe.rename_doc("Asset", duplicate_asset.name, asset_doc.name + "-1", merge=False)
+        frappe.db.commit()
+
+
+def cancel_dependent_asset_docs(asset_doc):
+    jeas = frappe.get_all(
+        "Journal Entry Account",
+        filters=[
+            ["docstatus", "=", 1],
+            ["reference_name", "=", asset_doc.name],
+            ["account", "LIKE", "%Accumulated Depreciations%"],
+        ],
+        pluck="parent",
+    )
+    journal_entries = list(set(jeas))
+    for j in journal_entries:
+        frappe.get_doc("Journal Entry", j).cancel()
+
+    for m in frappe.get_all(
+        "Asset Movement Item", filters=[["docstatus", "=", 1], ["asset", "=", asset_doc.name]], pluck="parent"
+    ):
+        frappe.get_doc("Asset Movement", m).cancel()
+
+
 @frappe.whitelist()
 def fetch_successful_docs(doctype):
-    docs = frappe.get_all("Data Migration Success",filters = {'document_type' : doctype}, pluck= "docname")
+    docs = frappe.get_all("Data Migration Success", filters={"document_type": doctype}, pluck="docname")
     return docs
+
 
 @frappe.whitelist()
 def create_document():
-
     data = json.loads(frappe.request.data)
     # frappe.local.response.update({"request":data})
 
     # insert document from request data
-    doc = frappe.get_doc(data).insert(ignore_links=True, ignore_mandatory= True)
+    doc = frappe.get_doc(data).insert(ignore_links=True, ignore_mandatory=True)
 
     # set response data
     frappe.local.response.update({"data": doc.as_dict()})
 
-    if doc.name != data['name']:
-        frappe.rename_doc(data['doctype'], doc.name, data['name'], merge=False)
+    if doc.name != data["name"]:
+        frappe.rename_doc(data["doctype"], doc.name, data["name"], merge=False)
 
     # commit for POST requests
     frappe.db.commit()
 
+
 def update_barcodes():
-    for item in frappe.get_all("Item",fields=['item_code'],filters = [["is_sales_item","=","1"]]):
-        item_doc = frappe.get_doc("Item",item['item_code'])
+    for item in frappe.get_all("Item", fields=["item_code"], filters=[["is_sales_item", "=", "1"]]):
+        item_doc = frappe.get_doc("Item", item["item_code"])
         found = False
         for b in item_doc.barcodes:
             if b.barcode == item_doc.item_code:
                 found = True
                 break
         if not found:
-            item_doc.append("barcodes",{
-                'barcode':item_doc.name
-            })
+            item_doc.append("barcodes", {"barcode": item_doc.name})
             item_doc.save()
-            frappe.db.commit()  
-          
-        
-        
+            frappe.db.commit()
 
 
 def update_special_pujas():
-    datas = frappe.get_all("Temp Data",fields=['*'])
+    datas = frappe.get_all("Temp Data", fields=["*"])
     for data in datas:
-        if data['mobile']:
-            clean_contact = re.sub(r"\D", "", data['mobile'])[-10:]
+        if data["mobile"]:
+            clean_contact = re.sub(r"\D", "", data["mobile"])[-10:]
             contacts = frappe.db.sql(
                 f"""
                     select contact_no,parent
@@ -75,22 +111,19 @@ def update_special_pujas():
             )
             donor = None
             if len(contacts) > 0:
-                donor = contacts[0]['parent']
+                donor = contacts[0]["parent"]
                 donor_doc = frappe.get_doc("Donor", donor)
-                if not data['date']:
-                    data['date'] = "NA"
-                donor_doc.append("puja_details",{
-                    'month': data['donor'].strftime("%B"),
-                    'day': data['donor'].day,
-                    'occasion': data['date']
-                })
+                if not data["date"]:
+                    data["date"] = "NA"
+                donor_doc.append(
+                    "puja_details",
+                    {"month": data["donor"].strftime("%B"), "day": data["donor"].day, "occasion": data["date"]},
+                )
                 donor_doc.save()
-            
-            if donor is not None:
-                frappe.db.set_value("Temp Data",data['name'],'found',1)
-    frappe.db.commit()
-            
 
+            if donor is not None:
+                frappe.db.set_value("Temp Data", data["name"], "found", 1)
+    frappe.db.commit()
 
 
 # @frappe.whitelist()
@@ -107,9 +140,7 @@ def update_preacher_donor(d):
     if len(max) > 0:
         max_preacher = max[0][0]
         if max_preacher is not None:
-            frappe.db.set_value(
-                "Donor", d, "llp_preacher", max_preacher, update_modified=False
-            )
+            frappe.db.set_value("Donor", d, "llp_preacher", max_preacher, update_modified=False)
     else:
         latest_data = frappe.db.sql(
             f"""
@@ -120,9 +151,7 @@ def update_preacher_donor(d):
                 """
         )
         if len(latest_data) > 0:
-            frappe.db.set_value(
-                "Donor", d, "llp_preacher", latest_data[0][0], update_modified=False
-            )
+            frappe.db.set_value("Donor", d, "llp_preacher", latest_data[0][0], update_modified=False)
     frappe.db.commit()
 
 
@@ -257,16 +286,12 @@ def get_donation_details():
     ):
         if not "top_collector" in donors[i["donor_id"]]:
             donors[i["donor_id"]].setdefault("top_collector", i["preacher"])
-            donors[i["donor_id"]].setdefault(
-                "top_collector_donation", i["total_donation"]
-            )
+            donors[i["donor_id"]].setdefault("top_collector_donation", i["total_donation"])
             donors[i["donor_id"]].setdefault("top_collector_times", i["times"])
             continue
         if not "second_collector" in donors[i["donor_id"]]:
             donors[i["donor_id"]].setdefault("second_collector", i["preacher"])
-            donors[i["donor_id"]].setdefault(
-                "second_collector_donation", i["total_donation"]
-            )
+            donors[i["donor_id"]].setdefault("second_collector_donation", i["total_donation"])
             donors[i["donor_id"]].setdefault("second_collector_times", i["times"])
 
     delets = []
@@ -427,29 +452,29 @@ def update_current_preacher():
         )
 
 
-def update_preachers():
-    settings = frappe.get_cached_doc("Dhananjaya Import Settings")
-    companies = ",".join([str(c.old_trust_code) for c in settings.companies_to_import])
-    data = run_query(
-        f"""
-                    select DR_NUMBER,PREACHER_CODE
-                    from `view_receipt_details`
-                    where TRUST_ID IN ({companies})
-                    """
-    )
-    for d in data:
-        frappe.enqueue(
-            update_donation_receipt,
-            queue="long",
-            job_name="Updating Donor Receipt",
-            timeout=100000,
-            d=d,
-        )
-    # n = 10000
-    # chunks = [data[i * n:(i + 1) * n] for i in range((len(data) + n - 1) // n )]
-    # for ind, chunk in enumerate(chunks):
-    # 	frappe.enqueue(assign_chunk, queue='long',job_name=f"Assinging Chunk #{ind}",timeout=100000,chunk=chunk)
-    # # return chunks
+# def update_preachers():
+#     settings = frappe.get_cached_doc("Dhananjaya Import Settings")
+#     companies = ",".join([str(c.old_trust_code) for c in settings.companies_to_import])
+#     data = run_query(
+#         f"""
+#                     select DR_NUMBER,PREACHER_CODE
+#                     from `view_receipt_details`
+#                     where TRUST_ID IN ({companies})
+#                     """
+#     )
+#     for d in data:
+#         frappe.enqueue(
+#             update_donation_receipt,
+#             queue="long",
+#             job_name="Updating Donor Receipt",
+#             timeout=100000,
+#             d=d,
+#         )
+# n = 10000
+# chunks = [data[i * n:(i + 1) * n] for i in range((len(data) + n - 1) // n )]
+# for ind, chunk in enumerate(chunks):
+# 	frappe.enqueue(assign_chunk, queue='long',job_name=f"Assinging Chunk #{ind}",timeout=100000,chunk=chunk)
+# # return chunks
 
 
 def assign_chunk(chunk):
@@ -507,21 +532,15 @@ def update_asset_data():
                 asset.append(
                     "finance_books",
                     {
-                        "finance_book": category_details[asset.asset_category][
-                            "finance_book"
+                        "finance_book": category_details[asset.asset_category]["finance_book"],
+                        "depreciation_method": category_details[asset.asset_category]["depreciation_method"],
+                        "total_number_of_depreciations": category_details[asset.asset_category][
+                            "total_number_of_depreciations"
                         ],
-                        "depreciation_method": category_details[asset.asset_category][
-                            "depreciation_method"
+                        "frequency_of_depreciation": category_details[asset.asset_category][
+                            "frequency_of_depreciation"
                         ],
-                        "total_number_of_depreciations": category_details[
-                            asset.asset_category
-                        ]["total_number_of_depreciations"],
-                        "frequency_of_depreciation": category_details[
-                            asset.asset_category
-                        ]["frequency_of_depreciation"],
-                        "depreciation_start_date": add_to_date(
-                            asset.purchase_date, days=1
-                        ),
+                        "depreciation_start_date": add_to_date(asset.purchase_date, days=1),
                     },
                 )
             # asset.docstatus = 1
@@ -539,9 +558,7 @@ def match_suspense():
 
 
 def update_total_debit_credit():
-    entries = frappe.get_all(
-        "Journal Entry", fields=["name"], filters={"total_debit": 0}
-    )
+    entries = frappe.get_all("Journal Entry", fields=["name"], filters={"total_debit": 0})
 
     return entries
     for e in entries:
@@ -578,17 +595,13 @@ def update_taxes():
         for item in items:
             tax_rate = (re.findall("[0-9]+", item["item_tax_template"]))[0]
             new_tax_template = "{} - {}% - TSFJ".format(tax_title, tax_rate)
-            frappe.db.set_value(
-                "Item Tax", item["tax_name"], "item_tax_template", new_tax_template
-            )
+            frappe.db.set_value("Item Tax", item["tax_name"], "item_tax_template", new_tax_template)
     frappe.db.commit()
     return "success"
 
 
 def update_item_types_of_materi_request_items():
-    items = frappe.db.get_all(
-        "Item", fields=["item_code", "is_stock_item", "is_fixed_asset"]
-    )
+    items = frappe.db.get_all("Item", fields=["item_code", "is_stock_item", "is_fixed_asset"])
     item_map = {}
     for item in items:
         item_map[item["item_code"]] = frappe._dict(
@@ -714,9 +727,7 @@ def updateItems(items):
             old_rate = int(list(doc.taxes[0].item_tax_template.split(" "))[-1])
         doc.set("taxes", [])
         if item["rate"] != 0:
-            doc.append(
-                "taxes", {"item_tax_template": "TSF GST {}".format(item["rate"])}
-            )
+            doc.append("taxes", {"item_tax_template": "TSF GST {}".format(item["rate"])})
 
         doc.save()
         frappe.db.commit()
@@ -731,9 +742,7 @@ def updateItems(items):
                 old_price = price["price_list_rate"]
                 cur_rate = item["rate"]
                 cur_price = old_price * ((100 + old_rate) / (100 + cur_rate))
-                frappe.db.set_value(
-                    "Item Price", price["name"], "price_list_rate", cur_price
-                )
+                frappe.db.set_value("Item Price", price["name"], "price_list_rate", cur_price)
 
 
 def getUniqueItems(items):
@@ -756,9 +765,7 @@ def getSiblings(name):
     doc = frappe.get_doc("Item", name)
     if doc.variant_of is not None:
         parent = doc.variant_of
-        sbls.extend(
-            frappe.get_all("Item", filters={"variant_of": doc.variant_of}, pluck="name")
-        )
+        sbls.extend(frappe.get_all("Item", filters={"variant_of": doc.variant_of}, pluck="name"))
         sbls.append(parent)
     else:
         sbls.append(doc.name)
@@ -894,12 +901,8 @@ def query_specific():
 
         current_doc = frappe.get_doc("Sales Invoice", voucher_no)
         # Create Cost of Good Sold
-        create_a_GL_Entry(
-            current_doc, "Cost of Goods Sold - TSFJ", "Stock In Hand - TSFJ", amount, 0
-        )
-        create_a_GL_Entry(
-            current_doc, "Stock In Hand - TSFJ", "Cost of Goods Sold - TSFJ", 0, amount
-        )
+        create_a_GL_Entry(current_doc, "Cost of Goods Sold - TSFJ", "Stock In Hand - TSFJ", amount, 0)
+        create_a_GL_Entry(current_doc, "Stock In Hand - TSFJ", "Cost of Goods Sold - TSFJ", 0, amount)
         frappe.db.commit()
 
 
@@ -925,12 +928,8 @@ def create_a_GL_Entry(doc, account, against, debit, credit):
 
 
 def delete_two_entries():
-    frappe.db.sql(
-        """DELETE FROM `tabGL Entry` WHERE name = '{}'""".format("9c2aaa3a3d")
-    )
-    frappe.db.sql(
-        """DELETE FROM `tabGL Entry` WHERE name = '{}'""".format("5013f4f9be")
-    )
+    frappe.db.sql("""DELETE FROM `tabGL Entry` WHERE name = '{}'""".format("9c2aaa3a3d"))
+    frappe.db.sql("""DELETE FROM `tabGL Entry` WHERE name = '{}'""".format("5013f4f9be"))
     frappe.db.commit()
 
 

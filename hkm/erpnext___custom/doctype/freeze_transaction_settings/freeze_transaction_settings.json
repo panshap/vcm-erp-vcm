@@ -51,7 +51,7 @@
   }
  ],
  "links": [],
- "modified": "2023-05-06 14:18:17.679219",
+ "modified": "2023-10-07 16:21:57.999621",
  "modified_by": "Administrator",
  "module": "ERPNext - Custom",
  "name": "Freeze Transaction Settings",
@@ -78,7 +78,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Accounts Manager",
+   "role": "Accounts Admin",
    "share": 1,
    "write": 1
   }

@@ -126,6 +126,7 @@ permission_query_conditions.update(
 # }
 override_doctype_class = {
     "POS Invoice": "hkm.erpnext___custom.overrides.CustomPOS.CustomPOS",
+    "Sales Invoice": "hkm.erpnext___custom.overrides.CustomSalesInvoice.CustomSalesInvoice",
     "Journal Entry": "hkm.erpnext___custom.overrides.journal_entry.HKMJJournalEntry",
 }
 

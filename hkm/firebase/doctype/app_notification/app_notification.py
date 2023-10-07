@@ -4,6 +4,7 @@
 import frappe
 from frappe.model.document import Document
 from firebase_admin import messaging
+from datetime import timedelta
 
 
 class AppNotification(Document):
@@ -24,7 +25,14 @@ class AppNotification(Document):
                     title=self.subject,
                     body=self.message,
                 ),
+                data={"is_route": str(self.is_route), "route": self.route},
+                # data={"is_route": str(self.is_route), "route": "23"},
                 tokens=tokens,
+                android=messaging.AndroidConfig(
+                    ttl=timedelta(seconds=3600),
+                    priority="normal",
+                    notification=messaging.AndroidNotification(icon="stock_ticker_update", color="#f45342"),
+                ),
             )
             fa_doc = frappe.get_doc("Firebase Admin App", self.app)
             response = messaging.send_multicast(message, app=fa_doc.instance)
