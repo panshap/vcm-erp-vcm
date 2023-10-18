@@ -154,7 +154,7 @@ doc_events = {
     },
     "Task": {"on_update": "hkm.erpnext___custom.task_notification.query"},
     "Sales Invoice": {
-        "validate": "hkm.erpnext___custom.overrides.sales_invoice.validate_extra",
+        # "validate": "hkm.erpnext___custom.overrides.sales_invoice.validate_extra",
         "before_submit": "hkm.erpnext___custom.extend.accounts_controller.validate_gst_entry",
     },
     "Supplier": {
