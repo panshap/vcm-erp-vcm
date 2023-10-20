@@ -46,6 +46,7 @@ doctype_js = {
     "Item": "public/js/item.js",
     "POS Invoice": "public/js/pos_invoice.js",
     "Item Code Printer": "public/js/item_code_printer.js",
+    "Bank Transaction": "public/js/bank_transaction.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}

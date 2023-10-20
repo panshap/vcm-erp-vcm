@@ -11,7 +11,7 @@ from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
 @frappe.whitelist()
 def query():
-    return update_depreciations()
+    # return update_depreciations()
     # update_barcodes()
     # update_special_pujas()
     # return upload_mumbai_data()
@@ -22,13 +22,16 @@ def query():
 def update_depreciations():
     for temp_entry in frappe.get_all("Temp Data", fields=["*"]):
         asset_doc = frappe.get_doc("Asset", temp_entry["asset_id"])
+        asset_location = asset_doc.location
         if asset_doc.docstatus == 1:
             cancel_dependent_asset_docs(asset_doc)
             asset_doc.reload()
             asset_doc.cancel()
         asset_doc.reload()
         duplicate_asset = frappe.copy_doc(doc=asset_doc)
-        duplicate_asset.location = "HKM Temple"
+        duplicate_asset.location = asset_location
+        if duplicate_asset.available_for_use_date is None:
+            duplicate_asset.available_for_use_date = duplicate_asset.purchase_date
         duplicate_asset.finance_books[0].depreciation_start_date = temp_entry["depreciation_posting_date"]
         duplicate_asset.finance_books[0].total_number_of_depreciations = temp_entry["total_number_of_dep"]
         duplicate_asset.finance_books[0].frequency_of_depreciation = temp_entry["frequency_of_dep"]

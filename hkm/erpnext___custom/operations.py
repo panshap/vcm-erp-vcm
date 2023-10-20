@@ -9,7 +9,7 @@ from frappe.utils import add_to_date, now
 
 @frappe.whitelist()
 def query():
-    custom_fields_download()
+    # custom_fields_download()
     # return update_asset_data()
     # update_total_debit_credit()
     return
@@ -53,21 +53,15 @@ def update_asset_data():
                 asset.append(
                     "finance_books",
                     {
-                        "finance_book": category_details[asset.asset_category][
-                            "finance_book"
+                        "finance_book": category_details[asset.asset_category]["finance_book"],
+                        "depreciation_method": category_details[asset.asset_category]["depreciation_method"],
+                        "total_number_of_depreciations": category_details[asset.asset_category][
+                            "total_number_of_depreciations"
                         ],
-                        "depreciation_method": category_details[asset.asset_category][
-                            "depreciation_method"
+                        "frequency_of_depreciation": category_details[asset.asset_category][
+                            "frequency_of_depreciation"
                         ],
-                        "total_number_of_depreciations": category_details[
-                            asset.asset_category
-                        ]["total_number_of_depreciations"],
-                        "frequency_of_depreciation": category_details[
-                            asset.asset_category
-                        ]["frequency_of_depreciation"],
-                        "depreciation_start_date": add_to_date(
-                            asset.purchase_date, days=1
-                        ),
+                        "depreciation_start_date": add_to_date(asset.purchase_date, days=1),
                     },
                 )
             # asset.docstatus = 1
@@ -85,9 +79,7 @@ def match_suspense():
 
 
 def update_total_debit_credit():
-    entries = frappe.get_all(
-        "Journal Entry", fields=["name"], filters={"total_debit": 0}
-    )
+    entries = frappe.get_all("Journal Entry", fields=["name"], filters={"total_debit": 0})
 
     return entries
     for e in entries:
@@ -124,17 +116,13 @@ def update_taxes():
         for item in items:
             tax_rate = (re.findall("[0-9]+", item["item_tax_template"]))[0]
             new_tax_template = "{} - {}% - TSFJ".format(tax_title, tax_rate)
-            frappe.db.set_value(
-                "Item Tax", item["tax_name"], "item_tax_template", new_tax_template
-            )
+            frappe.db.set_value("Item Tax", item["tax_name"], "item_tax_template", new_tax_template)
     frappe.db.commit()
     return "success"
 
 
 def update_item_types_of_materi_request_items():
-    items = frappe.db.get_all(
-        "Item", fields=["item_code", "is_stock_item", "is_fixed_asset"]
-    )
+    items = frappe.db.get_all("Item", fields=["item_code", "is_stock_item", "is_fixed_asset"])
     item_map = {}
     for item in items:
         item_map[item["item_code"]] = frappe._dict(
@@ -260,9 +248,7 @@ def updateItems(items):
             old_rate = int(list(doc.taxes[0].item_tax_template.split(" "))[-1])
         doc.set("taxes", [])
         if item["rate"] != 0:
-            doc.append(
-                "taxes", {"item_tax_template": "TSF GST {}".format(item["rate"])}
-            )
+            doc.append("taxes", {"item_tax_template": "TSF GST {}".format(item["rate"])})
 
         doc.save()
         frappe.db.commit()
@@ -277,9 +263,7 @@ def updateItems(items):
                 old_price = price["price_list_rate"]
                 cur_rate = item["rate"]
                 cur_price = old_price * ((100 + old_rate) / (100 + cur_rate))
-                frappe.db.set_value(
-                    "Item Price", price["name"], "price_list_rate", cur_price
-                )
+                frappe.db.set_value("Item Price", price["name"], "price_list_rate", cur_price)
 
 
 def getUniqueItems(items):
@@ -302,9 +286,7 @@ def getSiblings(name):
     doc = frappe.get_doc("Item", name)
     if doc.variant_of is not None:
         parent = doc.variant_of
-        sbls.extend(
-            frappe.get_all("Item", filters={"variant_of": doc.variant_of}, pluck="name")
-        )
+        sbls.extend(frappe.get_all("Item", filters={"variant_of": doc.variant_of}, pluck="name"))
         sbls.append(parent)
     else:
         sbls.append(doc.name)
@@ -440,12 +422,8 @@ def query_specific():
 
         current_doc = frappe.get_doc("Sales Invoice", voucher_no)
         # Create Cost of Good Sold
-        create_a_GL_Entry(
-            current_doc, "Cost of Goods Sold - TSFJ", "Stock In Hand - TSFJ", amount, 0
-        )
-        create_a_GL_Entry(
-            current_doc, "Stock In Hand - TSFJ", "Cost of Goods Sold - TSFJ", 0, amount
-        )
+        create_a_GL_Entry(current_doc, "Cost of Goods Sold - TSFJ", "Stock In Hand - TSFJ", amount, 0)
+        create_a_GL_Entry(current_doc, "Stock In Hand - TSFJ", "Cost of Goods Sold - TSFJ", 0, amount)
         frappe.db.commit()
 
 
@@ -471,12 +449,8 @@ def create_a_GL_Entry(doc, account, against, debit, credit):
 
 
 def delete_two_entries():
-    frappe.db.sql(
-        """DELETE FROM `tabGL Entry` WHERE name = '{}'""".format("9c2aaa3a3d")
-    )
-    frappe.db.sql(
-        """DELETE FROM `tabGL Entry` WHERE name = '{}'""".format("5013f4f9be")
-    )
+    frappe.db.sql("""DELETE FROM `tabGL Entry` WHERE name = '{}'""".format("9c2aaa3a3d"))
+    frappe.db.sql("""DELETE FROM `tabGL Entry` WHERE name = '{}'""".format("5013f4f9be"))
     frappe.db.commit()
 
 
