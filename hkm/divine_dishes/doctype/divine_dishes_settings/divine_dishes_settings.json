@@ -71,6 +71,13 @@
    "read": 1,
    "role": "Customer",
    "share": 1
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Customer",
+   "share": 1
   }
  ],
  "sort_field": "modified",
