@@ -11,8 +11,8 @@
   "razorpay_id",
   "razorpay_secret",
   "webhook_secret",
-  "section_break_p9cn0",
-  "price_list"
+  "section_break_al9rz",
+  "firebase_app"
  ],
  "fields": [
   {
@@ -36,22 +36,20 @@
    "label": "WEBHOOK SECRET"
   },
   {
-   "fieldname": "section_break_p9cn0",
+   "fieldname": "section_break_al9rz",
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "price_list",
+   "fieldname": "firebase_app",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Price List",
-   "options": "Price List",
-   "reqd": 1
+   "label": "Firebase App",
+   "options": "Firebase Admin App"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-10-22 15:32:00.036491",
+ "modified": "2023-10-22 19:04:08.863199",
  "modified_by": "Administrator",
  "module": "Divine Dishes",
  "name": "Divine Dishes Settings",
@@ -66,6 +64,13 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Customer",
+   "share": 1
   }
  ],
  "sort_field": "modified",
