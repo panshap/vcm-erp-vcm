@@ -24,14 +24,8 @@ class DDOrder(Document):
     def before_save(self):
         total_amount = 0
         for item in self.items:
-            item_code = frappe.get_value("Website Item", item.website_item, "item_code")
-            item.price = self.get_item_price(item_code)
-            item.amount = item.price * item.qty
+            frappe.errprint(item.item)
+            price = frappe.get_value("DD Item",item.item,"price")
+            item.amount = price * item.qty
             total_amount += item.amount
         self.total_amount = total_amount
-
-    def get_item_price(self, item_code):
-        prices = frappe.get_all(
-            "Item Price", filters={"item_code": item_code, "price_list": DEFAULT_PRICE_LIST}, fields=["price_list_rate"]
-        )
-        return prices[0]["price_list_rate"]
