@@ -19,6 +19,7 @@
    "fieldname": "user",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "User",
    "options": "User",
    "reqd": 1
@@ -39,11 +40,13 @@
    "default": "1",
    "fieldname": "running",
    "fieldtype": "Check",
+   "in_standard_filter": 1,
    "label": "Running"
   },
   {
    "fieldname": "item",
    "fieldtype": "Link",
+   "in_standard_filter": 1,
    "label": "Item",
    "options": "DD Item",
    "reqd": 1
@@ -57,7 +60,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-22 12:34:15.788592",
+ "modified": "2023-10-22 16:50:58.876773",
  "modified_by": "Administrator",
  "module": "Divine Dishes",
  "name": "DD Subscription",

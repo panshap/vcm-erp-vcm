@@ -29,3 +29,26 @@ class DDOrder(Document):
             item.amount = price * item.qty
             total_amount += item.amount
         self.total_amount = total_amount
+    
+    def on_submit(self):
+        if self.status == "Delivered":
+            settings_doc = frappe.get_cached_doc("Divine Dishes Settings")
+            doc = frappe.get_doc(
+                {
+                    "doctype": "App Notification",
+                    "app": settings_doc.firebase_app,
+                    "notify": 1,
+                    "user": self.user,
+                    "subject": "Order Delivered!",
+                    "message": f"Please check the Order for more details.",
+                    "is_route": 1,
+                    "route": f"/order/{self.name}",
+                }
+            )
+            doc.insert(ignore_permissions=True)
+
+@frappe.whitelist()
+def mark_delivered(docname):
+    doc = frappe.get_doc("DD Order",docname)
+    doc.status = "Delivered"
+    doc.save(ignore_permissions=True)

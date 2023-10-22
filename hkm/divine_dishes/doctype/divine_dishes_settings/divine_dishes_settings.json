@@ -10,9 +10,7 @@
   "razorpay_settings_section",
   "razorpay_id",
   "razorpay_secret",
-  "webhook_secret",
-  "section_break_p9cn0",
-  "price_list"
+  "webhook_secret"
  ],
  "fields": [
   {
@@ -34,24 +32,12 @@
    "fieldname": "webhook_secret",
    "fieldtype": "Password",
    "label": "WEBHOOK SECRET"
-  },
-  {
-   "fieldname": "section_break_p9cn0",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "price_list",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Price List",
-   "options": "Price List",
-   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-10-22 15:32:00.036491",
+ "modified": "2023-10-22 18:29:39.751780",
  "modified_by": "Administrator",
  "module": "Divine Dishes",
  "name": "Divine Dishes Settings",
@@ -66,6 +52,13 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Customer",
+   "share": 1
   }
  ],
  "sort_field": "modified",

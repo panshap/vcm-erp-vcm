@@ -20,6 +20,7 @@
    "fieldname": "user",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "User",
    "options": "User",
    "reqd": 1
@@ -63,7 +64,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 18:06:39.829235",
+ "modified": "2023-10-22 16:53:16.406970",
  "modified_by": "Administrator",
  "module": "Divine Dishes",
  "name": "DD Wallet Tx",
@@ -85,6 +86,15 @@
   {
    "read": 1,
    "role": "Customer"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "DD Manager",
+   "share": 1
   }
  ],
  "sort_field": "modified",

@@ -21,7 +21,7 @@ def create_subscription_orders():
             if schd.week_day == tomorrow_weekday:
                 if subscription_doc.user not in users:
                     users.setdefault(subscription_doc.user, [])
-                schd_order_item = frappe._dict(website_item=subscription_doc.website_item, qty=schd.qty)
+                schd_order_item = frappe._dict(item=subscription_doc.item, qty=schd.qty)
                 users[subscription_doc.user].append(schd_order_item)
 
     for u in users:
@@ -29,27 +29,41 @@ def create_subscription_orders():
 
 
 def check_order(user, orders):
-    settings = frappe.get_cached_doc("E Commerce Settings")
+    # settings = frappe.get_cached_doc("E Commerce Settings")
     total_amount = 0
     for order in orders:
-        web_item_doc = frappe.get_cached_doc("Website Item", order["website_item"])
-        prices = frappe.get_all(
-            "Item Price",
-            fields=["price_list_rate"],
-            filters={"price_list": settings.price_list, "item_code": web_item_doc.item_code},
-        )
-        if len(prices) > 0:
-            rate = prices[0].price_list_rate
-            amount = rate * order["qty"]
-            total_amount += amount
-        else:
-            frappe.throw(f"Rate of Item {order['website_item']} is not set.")
+        dd_item = frappe.get_cached_doc("DD Item", order["item"])
+        amount = dd_item.price * order["qty"]
+        total_amount += amount
+    settings_doc = frappe.get_cached_doc("Divine Dishes Settings")
     if user_wallet_balance(user) >= total_amount:
         if process_order(user, orders):
             make_wallet_tx(user, total_amount)
-            frappe.db.commit()
+            doc = frappe.get_doc(
+                {
+                    "doctype": "App Notification",
+                    "app": settings_doc.firebase_app,
+                    "notify": 1,
+                    "user": user,
+                    "subject": "Subscription Order Created & Paid from Wallet",
+                    "message": f"There is a deduction of {total_amount} from your Wallet to pay for Subscription Order."
+                }
+            )
+            doc.insert(ignore_permissions=True)
     else:
-        pass  # Notify user that it couldn't processed due to insufficeient balance in wallet
+        doc = frappe.get_doc(
+            {
+                "doctype": "App Notification",
+                "app": settings_doc.firebase_app,
+                "notify": 1,
+                "user": user,
+                "subject": "Insufficient Wallet Balance",
+                "message": f"Your subscriptions couldn't convert into order due to insufficient funds in Wallet. Please recharge."
+            }
+        )
+        doc.insert(ignore_permissions=True)
+    
+    frappe.db.commit()
 
 
 def process_order(user, orders) -> bool:
