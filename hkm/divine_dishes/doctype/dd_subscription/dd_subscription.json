@@ -9,9 +9,9 @@
  "field_order": [
   "running",
   "user",
-  "website_item",
+  "item",
   "item_name",
-  "uom",
+  "sku",
   "schedule"
  ],
  "fields": [
@@ -24,20 +24,13 @@
    "reqd": 1
   },
   {
-   "fieldname": "website_item",
-   "fieldtype": "Link",
-   "label": "Website Item",
-   "options": "Website Item",
-   "reqd": 1
-  },
-  {
    "fieldname": "schedule",
    "fieldtype": "Table",
    "label": "Schedule",
    "options": "DD Subscription Day Detail"
   },
   {
-   "fetch_from": "website_item.item_name",
+   "fetch_from": "item.item_name",
    "fieldname": "item_name",
    "fieldtype": "Data",
    "label": "Item Name"
@@ -49,15 +42,22 @@
    "label": "Running"
   },
   {
-   "fetch_from": "website_item.stock_uom",
-   "fieldname": "uom",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "DD Item",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item.sku",
+   "fieldname": "sku",
    "fieldtype": "Data",
-   "label": "UOM"
+   "label": "SKU"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-12 16:55:37.862055",
+ "modified": "2023-10-22 12:34:15.788592",
  "modified_by": "Administrator",
  "module": "Divine Dishes",
  "name": "DD Subscription",
