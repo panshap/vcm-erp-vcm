@@ -1,8 +1,6 @@
 # Copyright (c) 2023, Narahari Dasa and contributors
 # For license information, please see license.txt
 
-DEFAULT_PRICE_LIST = "Online Selling"
-
 import frappe
 from frappe.model.document import Document
 
