@@ -23,12 +23,12 @@ class DDOrder(Document):
         total_amount = 0
         for item in self.items:
             frappe.errprint(item.item)
-            price = frappe.get_value("DD Item",item.item,"price")
+            price = frappe.get_value("DD Item", item.item, "price")
             item.amount = price * item.qty
             total_amount += item.amount
         self.total_amount = total_amount
-    
-    def on_submit(self):
+
+    def on_update(self):
         if self.status == "Delivered":
             settings_doc = frappe.get_cached_doc("Divine Dishes Settings")
             doc = frappe.get_doc(
@@ -45,8 +45,12 @@ class DDOrder(Document):
             )
             doc.insert(ignore_permissions=True)
 
+
 @frappe.whitelist()
 def mark_delivered(docname):
-    doc = frappe.get_doc("DD Order",docname)
+    user_roles = frappe.get_roles()
+    if "DD Manager" not in user_roles:
+        frappe.throw("You are not Allowed.")
+    doc = frappe.get_doc("DD Order", docname)
     doc.status = "Delivered"
     doc.save(ignore_permissions=True)

@@ -47,7 +47,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-09-18 15:42:40.656021",
+ "modified": "2023-10-22 22:07:50.008354",
  "modified_by": "Administrator",
  "module": "Firebase",
  "name": "Firebase App Token",
@@ -125,10 +125,24 @@
    "delete": 1,
    "email": 1,
    "export": 1,
+   "if_owner": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "DCC Preacher",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "if_owner": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Customer",
    "share": 1,
    "write": 1
   }

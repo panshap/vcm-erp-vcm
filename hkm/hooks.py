@@ -185,7 +185,7 @@ doc_events = {
 
 scheduler_events = {
     "cron": {
-        "18 20 * * *": ["hkm.divine_dishes.tasks.every_day_evening"],
+        "15 20 * * *": ["hkm.divine_dishes.tasks.every_day_evening"],
     }
 }
 
