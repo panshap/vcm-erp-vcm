@@ -25,7 +25,7 @@ class AppNotification(Document):
                     title=self.subject,
                     body=self.message,
                 ),
-                data={"is_route": str(self.is_route), "screen": self.route},
+                data={"is_route": str(self.is_route), "screen": str(self.route)},
                 tokens=tokens,
                 android=messaging.AndroidConfig(
                     ttl=timedelta(seconds=3600),
