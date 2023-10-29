@@ -13,9 +13,12 @@ class TempleVisitorPing(Document):
 
 @frappe.whitelist()
 def get_today_count():
-    return frappe.get_all(
+    results = frappe.get_all(
         "Temple Visitor Ping",
         fields=["sum(count) as count"],
         filters=[["date", "=", datetime.today().strftime("%Y-%m-%d")]],
         group_by="date",
-    )[0]["count"]
+    )
+    if len(results) == 0:
+        return 0
+    return results[0]["count"]

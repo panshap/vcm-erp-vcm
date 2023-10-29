@@ -69,6 +69,10 @@ doctype_js = {
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
 
+website_route_rules = [
+    {"from_route": "/sl/<short_url>", "to_route": "redirect"},
+]
+
 website_generators = ["DD User Address"]
 
 # add methods and filters to jinja environment

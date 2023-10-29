@@ -11,7 +11,7 @@ from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
 @frappe.whitelist()
 def query():
-    # return update_depreciations()
+    return update_depreciations()
     # update_barcodes()
     # update_special_pujas()
     # return upload_mumbai_data()
