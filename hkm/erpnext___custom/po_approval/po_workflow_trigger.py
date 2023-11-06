@@ -6,7 +6,7 @@ from frappe.workflow.doctype.workflow_action.workflow_action import get_doc_work
 from hkm.erpnext___custom.po_approval.mail_template import message_str
 
 
-def check_alm(self, method):
+def check_alm(self, method = None):
     if hasattr(self, "department") and self.department == "":
         frappe.throw("Department is not set.")
     update_alm_data(self)

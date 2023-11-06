@@ -30,7 +30,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-07-18 17:15:25.018543",
+ "modified": "2023-11-06 14:48:19.725780",
  "modified_by": "Administrator",
  "module": "ERPNext - Custom",
  "name": "User Company Allowed",
@@ -48,10 +48,6 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "read": 1,
-   "role": "All"
   }
  ],
  "sort_field": "modified",

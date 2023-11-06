@@ -9,6 +9,7 @@
  "field_order": [
   "rent_of_section",
   "folk_student",
+  "folk_guide",
   "donation_towards",
   "column_break_4",
   "folk_plus",
@@ -124,15 +125,22 @@
    "options": "FOLK Donation",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "folk_guide",
+   "fieldtype": "Link",
+   "label": "FOLK Guide",
+   "options": "FOLK Guide"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-08-12 19:51:35.994176",
+ "modified": "2023-11-06 12:43:45.887345",
  "modified_by": "Administrator",
  "module": "FOLK Base",
  "name": "FOLK Donation",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -175,6 +183,7 @@
  "show_preview_popup": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "student_name",
  "track_changes": 1
 }

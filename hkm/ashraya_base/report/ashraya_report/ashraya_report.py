@@ -19,8 +19,8 @@ def execute(filters=None):
 		FROM `tabAshraya Candidate` as ASYCND
 		WHERE enabled = true {}
 	 	""".format(conditions),values = filters, as_dict=1):
-	 		candidate_map.setdefault(i.name, i)
-	data=[]
+		candidate_map.setdefault(i.name, i)	 	 
+	data = []
 	for candidate in sorted(candidate_map):
 		candidate_data =[]
 		candidate_data.append(candidate)

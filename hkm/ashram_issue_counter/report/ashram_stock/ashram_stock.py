@@ -64,7 +64,6 @@ def execute(filters=None):
         item_data.append(outward_sum)
         item_data.append(inward_sum-outward_sum)
         data.append(item_data)
-    #chart_data = get_chart_data(data)
     return columns, data #, None, chart_data
 
 def get_columns(filters):
@@ -104,34 +103,3 @@ def get_columns(filters):
 
     ]
     return columns
-
-
-def get_chart_data(data):
-    if not (data):
-        return []
-    devotees = [item[0] for item in data]
-
-    labels = list(set(devotees))
-       
-    datapoints = [0] * len(labels)
-
-    for row in data:
-        for idx, label in enumerate(labels):
-            if row[0] == label:
-                datapoints[idx] = datapoints[idx] + row[5]
-
-    return {
-        "data" : {
-            "labels" : labels,
-            "datasets" : [
-                {
-                    "name" : "Donation Report",
-                    "values" : datapoints
-                }
-            ]
-        },
-        "type" : "bar",
-        "lineOptions": {
-            "regionFill": 1
-        }
-    }
