@@ -38,7 +38,7 @@ def execute(filters=None):
 		name, full_name
 		FROM `tabFOLK Student` as FS
 	 	WHERE FS.enabled = 1 AND FS.folk_resident =1 %s"""%conditions,filters,as_dict=1):
-	 		students_map.setdefault(i.name, i)
+		students_map.setdefault(i.name, i)
 	data=[]
 	for student in sorted(students_map):
 		total = 0
@@ -47,7 +47,7 @@ def execute(filters=None):
 					SELECT name,amount
 					FROM `tabFOLK Residency Rent` as FRS
 				 	WHERE FRS.docstatus = 1 AND FRS.rent_type = 'Security' AND FRS.folk_student= %(student)s""",{"student":student},as_dict=1):
-				 		security_amount = security_amount + i.amount
+			security_amount = security_amount + i.amount
 		total+= security_amount
 		single_student_data = [student,students_map[student]["full_name"], security_amount]
 		for my in mon_yrs:
@@ -66,10 +66,8 @@ def execute(filters=None):
 					my_amount+= doc[1]
 				total+= my_amount
 				single_student_data.append(my_amount)
-
 		single_student_data.append(total)
 		data.append(single_student_data)
-	#chart_data = get_chart_data(data)
 	return columns, data #, None, chart_data
 
 def get_columns(filters,mon_yrs):
@@ -110,34 +108,3 @@ def get_columns(filters,mon_yrs):
 			"width": 120
 			})
 	return columns
-
-
-def get_chart_data(data):
-	if not (data):
-		return []
-	devotees = [item[0] for item in data]
-
-	labels = list(set(devotees))
-   	
-	datapoints = [0] * len(labels)
-
-	for row in data:
-		for idx, label in enumerate(labels):
-			if row[0] == label:
-				datapoints[idx] = datapoints[idx] + row[5]
-
-	return {
-		"data" : {
-			"labels" : labels,
-			"datasets" : [
-				{
-					"name" : "Donation Report",
-					"values" : datapoints
-				}
-			]
-		},
-		"type" : "bar",
-		"lineOptions": {
-			"regionFill": 1
-		}
-	}

@@ -9,44 +9,58 @@
   "company",
   "price_list",
   "item_code",
-  "quantity"
+  "quantity",
+  "date_printer_section",
+  "date",
+  "quantity_date"
  ],
  "fields": [
   {
    "fieldname": "company",
    "fieldtype": "Link",
    "label": "Company",
-   "options": "Company",
-   "reqd": 1
+   "options": "Company"
   },
   {
    "fieldname": "price_list",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Price List",
-   "options": "Price List",
-   "reqd": 1
+   "options": "Price List"
   },
   {
    "fieldname": "item_code",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Item Code",
-   "options": "Item",
-   "reqd": 1
+   "options": "Item"
   },
   {
    "fieldname": "quantity",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Quantity",
-   "reqd": 1
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "date_printer_section",
+   "fieldtype": "Section Break",
+   "label": "Date Printer"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "quantity_date",
+   "fieldtype": "Int",
+   "label": "Quantity (Date)"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-02-04 16:16:21.248941",
+ "modified": "2023-11-03 10:32:37.013366",
  "modified_by": "Administrator",
  "module": "ERPNext - Custom",
  "name": "Item Code Printer",

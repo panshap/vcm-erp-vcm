@@ -1,13 +1,13 @@
 frappe.ui.form.on('Item', {
-    onload(frm){
+    onload(frm) {
         frm.events.fetch_item_code(frm);
-        frm.set_query("item_group", function() {
-			return {
-				filters: {
-					is_group: 0,
-				}
-			}
-		});
+        frm.set_query("item_group", function () {
+            return {
+                filters: {
+                    is_group: 0,
+                }
+            }
+        });
     },
     // current_rates_update(frm,cur_dialog){
     //         var rate = cur_dialog.fields_dict.rate.value || 0;
@@ -36,11 +36,11 @@ frappe.ui.form.on('Item', {
     //         cur_dialog.set_value("price_rate",price_rate);
     //     }
     // },
-	// refresh(frm) {
-	    
-	// 	frm.add_custom_button('Update Price', () => {
-	// 	    var current_price = 0;
-	// 	    var current_selling_price = 0;
+    // refresh(frm) {
+
+    // 	frm.add_custom_button('Update Price', () => {
+    // 	    var current_price = 0;
+    // 	    var current_selling_price = 0;
     //         let d = new frappe.ui.Dialog({
     //             title: 'Enter details',
     //             fields: [
@@ -133,7 +133,7 @@ frappe.ui.form.on('Item', {
     //                 //     fieldname: 'valuation_update',
     //                 //     fieldtype: 'Check'
     //                 // }
-                    
+
     //             ],
     //             primary_action_label: 'Submit',
     //             primary_action(values) {
@@ -157,27 +157,27 @@ frappe.ui.form.on('Item', {
     //             }
     //         });
     //         d.show();
-		    
-           
+
+
     //     })
-	// },
-	item_group(frm){
-	    frm.events.fetch_item_code(frm);
-	},
-	fetch_item_code(frm){
-	    if(frm.doc.item_group != undefined){
-	        frappe.call({
-    	        method: 'hkm.erpnext___custom.overrides.item.fetch_item_code',
+    // },
+    item_group(frm) {
+        frm.events.fetch_item_code(frm);
+    },
+    fetch_item_code(frm) {
+        if (frm.doc.item_group != undefined) {
+            frappe.call({
+                method: 'hkm.erpnext___custom.extend.item.fetch_item_code',
                 args: {
                     item_group: frm.doc.item_group
                 },
                 callback: (r) => {
                     if (!r.exc) {
-                            frm.doc.item_code = r.message;
-                            refresh_field('item_code');
-                        }
+                        frm.doc.item_code = r.message;
+                        refresh_field('item_code');
+                    }
                 },
-    	    });
-	    }
-	}
+            });
+        }
+    }
 })

@@ -1,4 +1,3 @@
-Hare Krishna Movement
 FOLK Trip
 FOLK Base
 Ashraya Base
@@ -8,7 +7,6 @@ Ashram Issue Counter
 ERPNext - Custom
 Bhakta Training
 Prasadam Coupon Management
-HKM User Token
 Auth
 Divine Dishes
 Firebase

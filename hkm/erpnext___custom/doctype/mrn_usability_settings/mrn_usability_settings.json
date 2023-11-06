@@ -24,7 +24,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-12-04 18:37:34.192018",
+ "modified": "2023-11-06 14:46:55.771976",
  "modified_by": "Administrator",
  "module": "ERPNext - Custom",
  "name": "MRN Usability Settings",
@@ -46,11 +46,12 @@
    "email": 1,
    "print": 1,
    "read": 1,
-   "role": "Accounts Manager",
+   "role": "Accounts Admin",
    "share": 1,
    "write": 1
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

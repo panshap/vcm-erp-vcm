@@ -11,6 +11,7 @@
   "pan",
   "supplier_name",
   "supplier_type",
+  "supplier_group",
   "mobile_number",
   "address_section",
   "address_line_1",
@@ -107,11 +108,18 @@
    "fieldtype": "Data",
    "label": "Postal Code",
    "reqd": 1
+  },
+  {
+   "fieldname": "supplier_group",
+   "fieldtype": "Link",
+   "label": "Supplier Group",
+   "options": "Supplier Group",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-18 17:55:18.818541",
+ "modified": "2023-11-06 13:05:08.870425",
  "modified_by": "Administrator",
  "module": "ERPNext - Custom",
  "name": "Supplier Creation Request",

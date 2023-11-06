@@ -1,11 +1,4 @@
 frappe.ui.form.on('Material Request', {
-	refresh: function(frm){
-		if (frm.doc.docstatus==0) {
-			frm.add_custom_button(__("Bill of Quantity"),
-				() => frm.events.get_items_from_boq(frm), __("Get Items From"));
-		}
-
-	},
     onload:function(frm){
         frm.set_query("material_purchase_link", function() {
 			return {
@@ -53,50 +46,7 @@ frappe.ui.form.on('Material Request', {
             }
     	});
 
-	},
-	get_items_from_boq: function(frm) {
-		if (!frm.doc.boq){
-			frappe.throw(__("This Material Request is not linked to BOQ."));
-			return;
-		}
-		frappe.call({
-			method: "hkm.erpnext___custom.doctype.boq.boq.get_boq_items",
-			args: {
-					"boq": frm.doc.boq,
-				},
-			callback: function(r) {
-				if (!r.message) {
-					frappe.throw(__("No pending BOQ item is available"));
-				} else {
-					let items = r.message;
-					if (items.length === 0){
-						frappe.msgprint(__("No pending BOQ item is available"));
-						return;
-					}
-					$.each(items, function(i, item) {
-						var d = frappe.model.add_child(cur_frm.doc, "Material Request Item", "items");
-						d.item_code = item.item_code;
-						d.item_name = item.item_name;
-						d.description = item.item_name;
-						d.item_description = item.item_name;
-						d.warehouse = item.warehouse;
-						d.uom = item.stock_uom;
-						d.stock_uom = item.stock_uom;
-						d.conversion_factor = item.conversion_factor;
-						d.qty = item.qty;
-						d.stock_qty = item.stock_qty;
-						d.boq = item.boq;
-						d.boq_item = item.boq_item;
-						d.schedule_date = frm.doc.schedule_date;
-
-					});
-					refresh_field("items");
-					frappe.msgprint(__("Added " + items.length + " BOQ item(s)<br><b>Please save your work.</b>"));
-				}
-				
-			}
-		});
-	},  
+	} 
 });
 // frappe.listview_settings['Material Request'] = {
 // 	add_fields: ["material_request_type", "status", "per_ordered", "per_received", "transfer_status"],

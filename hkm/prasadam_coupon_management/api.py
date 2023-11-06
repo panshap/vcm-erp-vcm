@@ -3,10 +3,6 @@ from frappe.utils import getdate
 from frappe.utils import today
 from hkm.prasadam_coupon_management.utils import current_coupon_credits
 
-
-
-
-
 @frappe.whitelist()
 def get_coupon_stats(date,slot):
 

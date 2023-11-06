@@ -130,9 +130,11 @@ permission_query_conditions.update(
 # 	"ToDo": "custom_app.overrides.CustomToDo"
 # }
 override_doctype_class = {
-    "POS Invoice": "hkm.erpnext___custom.overrides.CustomPOS.CustomPOS",
-    "Sales Invoice": "hkm.erpnext___custom.overrides.CustomSalesInvoice.CustomSalesInvoice",
-    "Journal Entry": "hkm.erpnext___custom.overrides.journal_entry.HKMJJournalEntry",
+    "POS Invoice": "hkm.erpnext___custom.overrides.HKMPOSInvoice.HKMPOSInvoice",
+    "Sales Invoice": "hkm.erpnext___custom.overrides.HKMSalesInvoice.HKMSalesInvoice",
+    "Journal Entry": "hkm.erpnext___custom.overrides.HKMJournalEntry.HKMJournalEntry",
+    "Material Request": "hkm.erpnext___custom.overrides.HKMMaterialRequest.HKMMaterialRequest",
+    "Purchase Order": "hkm.erpnext___custom.overrides.HKMPurchaseOrder.HKMPurchaseOrder"
 }
 
 # Document Events
@@ -144,31 +146,18 @@ doc_events = {
         "before_insert": "hkm.erpnext___custom.doctype.freeze_transaction_settings.freeze_transaction_settings.validate_transaction_against_frozen_date",
         "before_cancel": "hkm.erpnext___custom.doctype.freeze_transaction_settings.freeze_transaction_settings.validate_transaction_against_frozen_date",
     },
-    "Purchase Order": {
-        "on_update": "hkm.erpnext___custom.po_approval.po_workflow_trigger.check_alm",
-        # "on_update": "hkm.erpnext___custom.po_approval.po_workflow_trigger.assign_and_notify_next_authority",
-        "validate": "hkm.erpnext___custom.overrides.purchase_order.validate",
-        "before_insert": "hkm.erpnext___custom.overrides.purchase_order.before_insert",
-        "before_save": "hkm.erpnext___custom.extend.accounts_controller.validate_gst_entry",
-    },
-    "Material Request": {
-        "on_cancel": "hkm.erpnext___custom.overrides.material_request.cancel_query",
-        "validate": "hkm.erpnext___custom.overrides.material_request.validate",
-        "before_save": "hkm.erpnext___custom.overrides.material_request.before_save",
-        "on_submit": "hkm.erpnext___custom.overrides.material_request.on_submit",
-    },
     "Task": {"on_update": "hkm.erpnext___custom.task_notification.query"},
     "Sales Invoice": {
         # "validate": "hkm.erpnext___custom.overrides.sales_invoice.validate_extra",
         "before_submit": "hkm.erpnext___custom.extend.accounts_controller.validate_gst_entry",
     },
     "Supplier": {
-        "before_insert": "hkm.erpnext___custom.overrides.supplier.creation_from_gstin",
-        "on_update": "hkm.erpnext___custom.overrides.supplier.fetch_address_from_creation_request",
+        "before_insert": "hkm.erpnext___custom.extend.supplier.creation_from_gstin",
+        "on_update": "hkm.erpnext___custom.extend.supplier.fetch_address_from_creation_request",
     },
     "Item": {
-        "before_insert": "hkm.erpnext___custom.overrides.item.item_taxes_and_income_account_set",  # Before the document first time inserted, this will not run always whenever some changes are made to the document
-        "after_insert": "hkm.erpnext___custom.overrides.item.item_creation_update",
+        "before_insert": "hkm.erpnext___custom.extend.item.item_taxes_and_income_account_set",  # Before the document first time inserted, this will not run always whenever some changes are made to the document
+        "after_insert": "hkm.erpnext___custom.extend.item.item_creation_update",
     },
     "Purchase Invoice": {
         "before_submit": [
@@ -181,7 +170,7 @@ doc_events = {
         "before_insert": "hkm.erpnext___custom.doctype.mrn_usability_settings.mrn_usability_settings.validate_mrn_settings",
     },
     "Purchase Receipt": {
-        "validate": "hkm.erpnext___custom.overrides.purchase_receipt.validate",
+        "validate": "hkm.erpnext___custom.extend.purchase_receipt.validate",
     },
 }
 # Scheduled Tasks
