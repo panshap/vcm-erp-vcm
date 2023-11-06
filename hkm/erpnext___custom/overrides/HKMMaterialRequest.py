@@ -41,7 +41,7 @@ class HKMMaterialRequest(MaterialRequest):
 
 	def validate_work_head(self):
 		if self.work_head:
-			work_request_head_doc = frappe.get_doc("Work Request Head",doc.work_head)
+			work_request_head_doc = frappe.get_doc("Work Request Head",self.work_head)
 			if work_request_head_doc.status == "Completed":
 				frappe.throw("Work Request is not allowed in this Work Request Head as it is COMPLETED.")
 		return
