@@ -258,17 +258,15 @@ box-shadow: 1px 1px 10px 4px rgb(245, 211, 211), -1px -1px 10px 4px rgba(183,161
 
 .navbar-brand {
     float: left;
-    height: 65px;
     padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 18px;
-    line-height: 20px;
 }
 .navbar{
-    height: 80px;
+    height: 60px;
 }
 .navbar-home img {
     max-height:max-content;
-    width: auto;
 }
 
 .content{

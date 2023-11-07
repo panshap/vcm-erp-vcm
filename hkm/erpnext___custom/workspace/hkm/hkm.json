@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"og5F_FUA2w\",\"type\":\"paragraph\",\"data\":{\"text\":\"Welcome to HKM Portal !<br><span class=\\\"h6\\\"><i>This page contains the most frequent shortcuts and customisation in ERP.</i></span><br>\",\"col\":12}},{\"id\":\"Uo75s7jMEI\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Settings</b></span>\",\"col\":12}},{\"id\":\"qeay4au5RQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Freeze Transactions\",\"col\":3}},{\"id\":\"WIpTy9RrW5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"GST Entry Settings\",\"col\":3}},{\"id\":\"XZ0UjqXUD_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"MRN Usability Settings\",\"col\":3}},{\"id\":\"zYG5COLQyT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Company Permissions\",\"col\":3}},{\"id\":\"tyMXNevyeX\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"m9aIOWQayV\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\" style=\\\"\\\">Reports</span>\",\"col\":12}},{\"id\":\"PFh1DeReTO\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts\",\"col\":4}},{\"id\":\"9TpMi7yLa0\",\"type\":\"card\",\"data\":{\"card_name\":\"Tracking\",\"col\":4}},{\"id\":\"O5lnvdJEGC\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"rPUL29HO20\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Operations</b></span>\",\"col\":12}},{\"id\":\"yvP8UfEcwg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Price Updater\",\"col\":3}},{\"id\":\"r0oTYxZ2gG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item Code Printer\",\"col\":3}},{\"id\":\"VOiTrB39zQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Work Request Head\",\"col\":3}},{\"id\":\"ZC1wR_Q9pK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"URL Shortener\",\"col\":3}},{\"id\":\"SqkBLYXN69\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item Rates (With GST)\",\"col\":3}},{\"id\":\"nRERio4O5v\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"73p2ovY4VQ\",\"type\":\"card\",\"data\":{\"card_name\":\"Creations Requests\",\"col\":4}},{\"id\":\"3s1nnE0_D7\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"TluSJQ2zFs\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"SC6LZLB9uN\",\"type\":\"paragraph\",\"data\":{\"text\":\"Powered By\",\"col\":12}},{\"id\":\"VYTdmMHPkD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Hare Krishna Movement</span>\",\"col\":12}},{\"id\":\"FQ7fLcUUhi\",\"type\":\"paragraph\",\"data\":{\"text\":\"Learning Resources :&nbsp;<a href=\\\"https://www.youtube.com/@hkmjaipurerp\\\">https://www.youtube.com/@hkmjaipurerp</a>\",\"col\":12}}]",
+ "content": "[{\"id\":\"og5F_FUA2w\",\"type\":\"paragraph\",\"data\":{\"text\":\"Welcome to HKM Portal !<br><span class=\\\"h6\\\"><i>This page contains the most frequent shortcuts and customisation in ERP.</i></span><br>\",\"col\":12}},{\"id\":\"Uo75s7jMEI\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Settings</b></span>\",\"col\":12}},{\"id\":\"qeay4au5RQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Freeze Transactions\",\"col\":3}},{\"id\":\"WIpTy9RrW5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"GST Entry Settings\",\"col\":3}},{\"id\":\"XZ0UjqXUD_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"MRN Usability Settings\",\"col\":3}},{\"id\":\"zYG5COLQyT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Company Permissions\",\"col\":3}},{\"id\":\"tyMXNevyeX\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"m9aIOWQayV\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\" style=\\\"\\\">Reports</span>\",\"col\":12}},{\"id\":\"PFh1DeReTO\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts\",\"col\":4}},{\"id\":\"9TpMi7yLa0\",\"type\":\"card\",\"data\":{\"card_name\":\"Tracking\",\"col\":4}},{\"id\":\"O5lnvdJEGC\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"rPUL29HO20\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Operations</b></span>\",\"col\":12}},{\"id\":\"yvP8UfEcwg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Price Updater\",\"col\":3}},{\"id\":\"r0oTYxZ2gG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item Code Printer\",\"col\":3}},{\"id\":\"VOiTrB39zQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Work Request Head\",\"col\":3}},{\"id\":\"SqkBLYXN69\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item Rates (With GST)\",\"col\":3}},{\"id\":\"nRERio4O5v\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"73p2ovY4VQ\",\"type\":\"card\",\"data\":{\"card_name\":\"Creations Requests\",\"col\":4}},{\"id\":\"3s1nnE0_D7\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"TluSJQ2zFs\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"SC6LZLB9uN\",\"type\":\"paragraph\",\"data\":{\"text\":\"Powered By\",\"col\":12}},{\"id\":\"VYTdmMHPkD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Hare Krishna Movement</span>\",\"col\":12}},{\"id\":\"FQ7fLcUUhi\",\"type\":\"paragraph\",\"data\":{\"text\":\"Learning Resources :&nbsp;<a href=\\\"https://www.youtube.com/@hkmjaipurerp\\\">https://www.youtube.com/@hkmjaipurerp</a>\",\"col\":12}}]",
  "creation": "2023-11-06 11:03:37.673557",
  "custom_blocks": [],
  "docstatus": 0,
@@ -126,7 +126,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-06 18:18:35.992450",
+ "modified": "2023-11-07 08:52:03.458602",
  "modified_by": "nrhd@hkm-group.org",
  "module": "ERPNext - Custom",
  "name": "HKM",
@@ -162,14 +162,6 @@
    "doc_view": "List",
    "label": "User Company Permissions",
    "link_to": "User Company Allowed",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "URL Shortener",
-   "link_to": "HKM Redirect",
    "stats_filter": "[]",
    "type": "DocType"
   },
