@@ -70,7 +70,6 @@
    "read_only": 1
   },
   {
-   "default": "now",
    "fieldname": "date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -80,7 +79,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-28 12:22:28.321718",
+ "modified": "2023-11-07 19:00:42.250973",
  "modified_by": "Administrator",
  "module": "Divine Dishes",
  "name": "DD Order",

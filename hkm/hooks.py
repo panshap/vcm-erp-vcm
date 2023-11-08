@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 from . import __version__ as app_version
-from hkm.erpnext___custom.doctype.user_company_allowed.list_view import get_applicable_documents
+from hkm.erpnext___custom.doctype.user_company_allowed.list_view import (
+    get_applicable_documents,
+)
 
 
 app_name = "hkm"
@@ -111,10 +113,14 @@ permission_query_conditions = {
 documents = get_applicable_documents()
 
 permission_query_conditions.update(
-    dict.fromkeys(documents, "hkm.erpnext___custom.doctype.user_company_allowed.list_view.query")
+    dict.fromkeys(
+        documents, "hkm.erpnext___custom.doctype.user_company_allowed.list_view.query"
+    )
 )
 permission_query_conditions.update(
-    {"Company": "hkm.erpnext___custom.doctype.user_company_allowed.list_view.company_specific"}
+    {
+        "Company": "hkm.erpnext___custom.doctype.user_company_allowed.list_view.company_specific"
+    }
 )
 
 #
@@ -134,7 +140,7 @@ override_doctype_class = {
     "Sales Invoice": "hkm.erpnext___custom.overrides.HKMSalesInvoice.HKMSalesInvoice",
     "Journal Entry": "hkm.erpnext___custom.overrides.HKMJournalEntry.HKMJournalEntry",
     "Material Request": "hkm.erpnext___custom.overrides.HKMMaterialRequest.HKMMaterialRequest",
-    "Purchase Order": "hkm.erpnext___custom.overrides.HKMPurchaseOrder.HKMPurchaseOrder"
+    "Purchase Order": "hkm.erpnext___custom.overrides.HKMPurchaseOrder.HKMPurchaseOrder",
 }
 
 # Document Events
@@ -145,6 +151,7 @@ doc_events = {
     "*": {
         "before_insert": "hkm.erpnext___custom.doctype.freeze_transaction_settings.freeze_transaction_settings.validate_transaction_against_frozen_date",
         "before_cancel": "hkm.erpnext___custom.doctype.freeze_transaction_settings.freeze_transaction_settings.validate_transaction_against_frozen_date",
+        "before_save": "hkm.erpnext___custom.letterhead.query",
     },
     "Task": {"on_update": "hkm.erpnext___custom.task_notification.query"},
     "Sales Invoice": {

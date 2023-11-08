@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils.data import now
 
 
 class DDOrder(Document):
@@ -21,8 +22,9 @@ class DDOrder(Document):
 
     def before_save(self):
         total_amount = 0
+        if not self.date:
+            self.date = now()
         for item in self.items:
-            frappe.errprint(item.item)
             price = frappe.get_value("DD Item", item.item, "price")
             item.amount = price * item.qty
             total_amount += item.amount

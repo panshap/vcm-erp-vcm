@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "autoincrement",
+ "autoname": "hash",
  "creation": "2021-06-22 16:08:11.859411",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -47,12 +47,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-23 19:20:24.353135",
- "modified": "2023-10-22 22:07:50.008354",
+ "modified": "2023-11-07 18:37:26.654026",
  "modified_by": "Administrator",
  "module": "Firebase",
  "name": "Firebase App Token",
- "naming_rule": "Autoincrement",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {

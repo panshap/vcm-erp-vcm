@@ -3,7 +3,7 @@ frappe.ui.form.on("Bank Transaction", {
         frm.add_custom_button(__("Create Journal Entry"), function () {
             frappe.call({
                 method:
-                    "hkm.erpnext___custom.overrides.journal_entry.get_journal_entry_from_statement",
+                    "hkm.erpnext___custom.overrides.HKMJournalEntry.get_journal_entry_from_statement",
                 args: {
                     statement: frm.doc.name,
                 },
