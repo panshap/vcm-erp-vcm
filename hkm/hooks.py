@@ -222,58 +222,58 @@ scheduler_events = {
 
 # before_tests = "custom_app.install.before_tests"
 
-fixtures = [
-    # "Custom Field",
-    # "Custom DocPerm",
-    # "Devotee",
-    # "Buying Settings",
-    # "Selling Settings",
-    # "Stock Settings",
-    # "HR Settings",
-    # "System Settings",
-    # "Payroll Settings",
-    # "Accounts Settings",
-    # "List View Settings",
-    # "Portal Settings",
-    # # Ashram
-    # "Ashram Library Book",
-    # "Ashram Store Item",
-    # # HR
-    # "Salutation",
-    # "Designation",
-    # "Employee Grade",
-    # # Store
-    # "UOM",
-    # # Misc
-    # "Role",
-    # "Custom DocPerm",
-    # "Role Profile",
-    # "Workflow State",
-    # "Workflow",
-    # "Client Script"
-    # "Item Group",
-    # "GST HSN Code",
-    # "Role",
-    # "Item Attribute"
-    # "Supplier Group",
-    # {"doctype": "Address", "filters": [
-    #     [
-    #         "city", "like", "%udaipur%"
-    #     ]
-    # ]},
-    # {"doctype": "Supplier", "filters": [
-    #     [
-    #         "primary_address", "like", "%udaipur%"
-    #     ]
-    # ]},
-    # {"doctype": "Cost Center", "filters": [
-    #     [
-    #         "company", "=","Kota - Hare Krishna Movement"
-    #     ]
-    # ]},
-    # "Role","Custom DocPerm","Property Setter"
-    # "DocType Link"
-]
+# fixtures = [
+# "Custom Field",
+# "Custom DocPerm",
+# "Devotee",
+# "Buying Settings",
+# "Selling Settings",
+# "Stock Settings",
+# "HR Settings",
+# "System Settings",
+# "Payroll Settings",
+# "Accounts Settings",
+# "List View Settings",
+# "Portal Settings",
+# # Ashram
+# "Ashram Library Book",
+# "Ashram Store Item",
+# # HR
+# "Salutation",
+# "Designation",
+# "Employee Grade",
+# # Store
+# "UOM",
+# # Misc
+# "Role",
+# "Custom DocPerm",
+# "Role Profile",
+# "Workflow State",
+# "Workflow",
+# "Client Script"
+# "Item Group",
+# "GST HSN Code",
+# "Role",
+# "Item Attribute"
+# "Supplier Group",
+# {"doctype": "Address", "filters": [
+#     [
+#         "city", "like", "%udaipur%"
+#     ]
+# ]},
+# {"doctype": "Supplier", "filters": [
+#     [
+#         "primary_address", "like", "%udaipur%"
+#     ]
+# ]},
+# {"doctype": "Cost Center", "filters": [
+#     [
+#         "company", "=","Kota - Hare Krishna Movement"
+#     ]
+# ]},
+# "Role","Custom DocPerm","Property Setter"
+# "DocType Link"
+# ]
 
 # Overriding Methods
 # ------------------------------
@@ -314,4 +314,45 @@ user_data_fields = [
         "strict": False,
     },
     {"doctype": "{doctype_4}"},
+]
+
+### This is one place for keeping all fixtures of any other custom apps as well. If we just have other custom apps instead of this, then we have to manually copy-paste it there to begin with initial fixtures.
+
+fixtures = [
+    "Workflow Action Master",
+    "Workflow State",
+    "Role",
+    {
+        "dt": "Workflow",
+        "filters": [
+            ["is_active", "=", 1],
+            [
+                "document_type",
+                "in",
+                [
+                    "Donation Receipt",
+                    "Item Creation Request",
+                    "Supplier Creation Request",
+                    "Purchase Order",
+                    "Donor ECS Creation Request",
+                ],
+            ],
+        ],
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [
+            [
+                "dt",
+                "in",
+                [
+                    "Material Request",
+                    "Purchase Order",
+                    "Purchase Receipt",
+                    "Purchase Invoice",
+                ],
+            ],
+        ],
+    },
+    "Property Setter",
 ]
