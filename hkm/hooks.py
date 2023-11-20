@@ -3,7 +3,7 @@ from . import __version__ as app_version
 from hkm.erpnext___custom.doctype.user_company_allowed.list_view import (
     get_applicable_documents,
 )
-
+from hkm.fixtures import custom_fixtures
 
 app_name = "hkm"
 app_title = "Hare Krishna Movement"
@@ -316,43 +316,4 @@ user_data_fields = [
     {"doctype": "{doctype_4}"},
 ]
 
-### This is one place for keeping all fixtures of any other custom apps as well. If we just have other custom apps instead of this, then we have to manually copy-paste it there to begin with initial fixtures.
-
-fixtures = [
-    "Workflow Action Master",
-    "Workflow State",
-    "Role",
-    {
-        "dt": "Workflow",
-        "filters": [
-            ["is_active", "=", 1],
-            [
-                "document_type",
-                "in",
-                [
-                    "Donation Receipt",
-                    "Item Creation Request",
-                    "Supplier Creation Request",
-                    "Purchase Order",
-                    "Donor ECS Creation Request",
-                ],
-            ],
-        ],
-    },
-    {
-        "dt": "Custom Field",
-        "filters": [
-            [
-                "dt",
-                "in",
-                [
-                    "Material Request",
-                    "Purchase Order",
-                    "Purchase Receipt",
-                    "Purchase Invoice",
-                ],
-            ],
-        ],
-    },
-    "Property Setter",
-]
+fixtures = custom_fixtures
