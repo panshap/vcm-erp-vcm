@@ -3,7 +3,7 @@ from . import __version__ as app_version
 from hkm.erpnext___custom.doctype.user_company_allowed.list_view import (
     get_applicable_documents,
 )
-
+from hkm.fixtures import custom_fixtures
 
 app_name = "hkm"
 app_title = "Hare Krishna Movement"
@@ -222,58 +222,58 @@ scheduler_events = {
 
 # before_tests = "custom_app.install.before_tests"
 
-fixtures = [
-    # "Custom Field",
-    # "Custom DocPerm",
-    # "Devotee",
-    # "Buying Settings",
-    # "Selling Settings",
-    # "Stock Settings",
-    # "HR Settings",
-    # "System Settings",
-    # "Payroll Settings",
-    # "Accounts Settings",
-    # "List View Settings",
-    # "Portal Settings",
-    # # Ashram
-    # "Ashram Library Book",
-    # "Ashram Store Item",
-    # # HR
-    # "Salutation",
-    # "Designation",
-    # "Employee Grade",
-    # # Store
-    # "UOM",
-    # # Misc
-    # "Role",
-    # "Custom DocPerm",
-    # "Role Profile",
-    # "Workflow State",
-    # "Workflow",
-    # "Client Script"
-    # "Item Group",
-    # "GST HSN Code",
-    # "Role",
-    # "Item Attribute"
-    # "Supplier Group",
-    # {"doctype": "Address", "filters": [
-    #     [
-    #         "city", "like", "%udaipur%"
-    #     ]
-    # ]},
-    # {"doctype": "Supplier", "filters": [
-    #     [
-    #         "primary_address", "like", "%udaipur%"
-    #     ]
-    # ]},
-    # {"doctype": "Cost Center", "filters": [
-    #     [
-    #         "company", "=","Kota - Hare Krishna Movement"
-    #     ]
-    # ]},
-    # "Role","Custom DocPerm","Property Setter"
-    # "DocType Link"
-]
+# fixtures = [
+# "Custom Field",
+# "Custom DocPerm",
+# "Devotee",
+# "Buying Settings",
+# "Selling Settings",
+# "Stock Settings",
+# "HR Settings",
+# "System Settings",
+# "Payroll Settings",
+# "Accounts Settings",
+# "List View Settings",
+# "Portal Settings",
+# # Ashram
+# "Ashram Library Book",
+# "Ashram Store Item",
+# # HR
+# "Salutation",
+# "Designation",
+# "Employee Grade",
+# # Store
+# "UOM",
+# # Misc
+# "Role",
+# "Custom DocPerm",
+# "Role Profile",
+# "Workflow State",
+# "Workflow",
+# "Client Script"
+# "Item Group",
+# "GST HSN Code",
+# "Role",
+# "Item Attribute"
+# "Supplier Group",
+# {"doctype": "Address", "filters": [
+#     [
+#         "city", "like", "%udaipur%"
+#     ]
+# ]},
+# {"doctype": "Supplier", "filters": [
+#     [
+#         "primary_address", "like", "%udaipur%"
+#     ]
+# ]},
+# {"doctype": "Cost Center", "filters": [
+#     [
+#         "company", "=","Kota - Hare Krishna Movement"
+#     ]
+# ]},
+# "Role","Custom DocPerm","Property Setter"
+# "DocType Link"
+# ]
 
 # Overriding Methods
 # ------------------------------
@@ -315,3 +315,5 @@ user_data_fields = [
     },
     {"doctype": "{doctype_4}"},
 ]
+
+fixtures = custom_fixtures
