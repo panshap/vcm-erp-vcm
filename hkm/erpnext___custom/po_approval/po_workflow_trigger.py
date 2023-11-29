@@ -136,13 +136,12 @@ def remove_all_assignments(doc):
     frappe.db.sql(
         """
 		UPDATE `tabToDo`
-		SET status = 'Cancelled'
+		SET status = 'Closed'
 		WHERE status = 'Open'
 		AND reference_name = '{}'
 		AND reference_type = 'Purchase Order'
-		AND owner = '{}'
 		""".format(
-            doc.name, frappe.session.user
+            doc.name
         )
     )
     frappe.db.commit()
