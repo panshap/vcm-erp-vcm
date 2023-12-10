@@ -20,9 +20,9 @@ class AppNotification(Document):
         )
         if len(tokens) > 0:
             # See documentation on defining a message payload.
-            frappe.errprint(self.message)
-            frappe.errprint(str(self.is_route))
-            frappe.errprint(self.route)
+            # frappe.errprint(self.message)
+            # frappe.errprint(str(self.is_route))
+            # frappe.errprint(self.route)
             message = messaging.MulticastMessage(
                 notification=messaging.Notification(
                     title=self.subject,
@@ -33,7 +33,9 @@ class AppNotification(Document):
                 android=messaging.AndroidConfig(
                     ttl=timedelta(seconds=3600),
                     priority="normal",
-                    notification=messaging.AndroidNotification(icon="stock_ticker_update", color="#f45342"),
+                    notification=messaging.AndroidNotification(
+                        icon="stock_ticker_update", color="#f45342"
+                    ),
                 ),
             )
             fa_doc = frappe.get_doc("Firebase Admin App", self.app)
