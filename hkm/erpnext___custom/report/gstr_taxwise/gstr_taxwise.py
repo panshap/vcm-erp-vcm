@@ -1,6 +1,11 @@
 # # Copyright (c) 2023, Narahari Dasa and contributors
 # # For license information, please see license.txt
 
+from erpnext.controllers.taxes_and_totals import (
+    get_itemised_tax,
+    get_itemised_tax_breakup_data,
+    get_itemised_taxable_amount,
+)
 import frappe, json
 from frappe import _
 
@@ -30,6 +35,7 @@ def execute(filters=None):
     )
 
     columns = get_columns(filters)
+
     invoices = get_invoices(filters)
 
     data = []
@@ -109,10 +115,12 @@ def get_invoice_item_tax_map(invoice_list):
                 invoices_data[invoice][item][
                     gstr(gst_type, tax_detail[item][0])
                 ] = tax_detail[item][1]
+        if invoice == "TSFJ-2311-0072-1":
+            frappe.errprint("Item De")
+            frappe.errprint(tax_detail)
+            frappe.errprint(invoices_data[invoice])
 
     return invoices_data
-
-    return
 
 
 def get_gst_type(account_head):
@@ -175,6 +183,9 @@ def get_invoices(filters):
         item_taxes = inv_item_tax_map[invoice_no][
             item_name if not item_code else item_code
         ]
+        frappe.errprint(invoice_no)
+        frappe.errprint(item_name if not item_code else item_code)
+        frappe.errprint(item_taxes)
 
         # Tax Free Item
         if not item_taxes:
@@ -194,8 +205,14 @@ def get_invoices(filters):
                 )
             if gst_hsn_code not in invoices[invoice_no]["taxes"][gtype]["hsns"]:
                 invoices[invoice_no]["taxes"][gtype]["hsns"].append(gst_hsn_code)
+            frappe.errprint("Inside")
+            frappe.errprint(taxable)
+            frappe.errprint(gtype)
+            frappe.errprint(item_taxes[gtype])
             invoices[invoice_no]["taxes"][gtype]["taxable"] += taxable
             invoices[invoice_no]["taxes"][gtype]["tax"] += item_taxes[gtype]
+            frappe.errprint(invoices[invoice_no]["taxes"][gtype]["tax"])
+    # frappe.errprint(invoices)
     return invoices
 
 
