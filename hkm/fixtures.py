@@ -35,6 +35,7 @@ custom_fixtures = [
                     "Purchase Order",
                     "Purchase Receipt",
                     "Purchase Invoice",
+                    "Journal Entry",
                 ],
             ],
         ],
@@ -54,4 +55,5 @@ custom_fixtures = [
             ],
         ],
     },
+    "DJ Mode of Payment",
 ]
