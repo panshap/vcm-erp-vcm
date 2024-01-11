@@ -55,5 +55,18 @@ custom_fixtures = [
             ],
         ],
     },
-    "DJ Mode of Payment",
+    # {
+    #     "dt": "Custom DocPerm",
+    #     "filters": [
+    #         [
+    #             "parent",
+    #             "in",
+    #             [
+    #                 "Account",
+    #             ],
+    #         ],
+    #     ],
+    # },
+    "Custom DocPerm",
+    # "DJ Mode of Payment",
 ]
