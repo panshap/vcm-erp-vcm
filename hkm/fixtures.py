@@ -36,25 +36,27 @@ custom_fixtures = [
                     "Purchase Receipt",
                     "Purchase Invoice",
                     "Journal Entry",
+                    "Customer",
+                    "Supplier",
                 ],
             ],
         ],
     },
-    {
-        "dt": "Property Setter",
-        "filters": [
-            [
-                "doc_type",
-                "in",
-                [
-                    "Material Request",
-                    "Purchase Order",
-                    "Purchase Receipt",
-                    "Purchase Invoice",
-                ],
-            ],
-        ],
-    },
+    # {
+    #     "dt": "Property Setter",
+    #     "filters": [
+    #         [
+    #             "doc_type",
+    #             "in",
+    #             [
+    #                 "Material Request",
+    #                 "Purchase Order",
+    #                 "Purchase Receipt",
+    #                 "Purchase Invoice",
+    #             ],
+    #         ],
+    #     ],
+    # },
     # {
     #     "dt": "Custom DocPerm",
     #     "filters": [
@@ -67,6 +69,6 @@ custom_fixtures = [
     #         ],
     #     ],
     # },
-    "Custom DocPerm",
+    # "Custom DocPerm",
     # "DJ Mode of Payment",
 ]
