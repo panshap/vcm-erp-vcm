@@ -10,9 +10,10 @@ frappe.ui.form.on('Sales Invoice', {
 			frm.add_custom_button(__("Direct Trash"), function () {
 				frappe.call({
 					method:
-						"hkm.erpnext___custom.overrides.HKMSalesInvoice.directly_mark_cancelled",
+						"hkm.erpnext___custom.common.directly_mark_cancelled",
 					args: {
-						name: frm.doc.name,
+						doctype: frm.doc.doctype,
+						docname: frm.doc.name,
 					},
 					callback: (r) => {
 						frm.reload_doc()
