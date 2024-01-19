@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "format:{company}-{document}",
  "creation": "2020-07-31 19:48:56.501175",
  "doctype": "DocType",
@@ -35,7 +36,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-18 17:10:43.780523",
+ "modified": "2024-01-18 18:29:30.095882",
  "modified_by": "Administrator",
  "module": "ERPNext - Custom",
  "name": "ALM",
