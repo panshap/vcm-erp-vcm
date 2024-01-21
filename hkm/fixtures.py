@@ -4,60 +4,60 @@
 ### This file has to be dynamically changed everytime, we need to send some customisations to other sites.
 
 custom_fixtures = [
-    "Donor Address State"
-    # "Workflow Action Master",
-    # "Workflow State",
-    # "Role",
-    # {
-    #     "dt": "Workflow",
-    #     "filters": [
-    #         ["is_active", "=", 1],
-    #         [
-    #             "document_type",
-    #             "in",
-    #             [
-    #                 "Donation Receipt",
-    #                 "Item Creation Request",
-    #                 "Supplier Creation Request",
-    #                 "Purchase Order",
-    #                 "Donor ECS Creation Request",
-    #             ],
-    #         ],
-    #     ],
-    # },
-    # {
-    #     "dt": "Custom Field",
-    #     "filters": [
-    #         [
-    #             "dt",
-    #             "in",
-    #             [
-    #                 "Material Request",
-    #                 "Purchase Order",
-    #                 "Purchase Receipt",
-    #                 "Purchase Invoice",
-    #                 "Journal Entry",
-    #                 "Customer",
-    #                 "Supplier",
-    #             ],
-    #         ],
-    #     ],
-    # },
-    # {
-    #     "dt": "Property Setter",
-    #     "filters": [
-    #         [
-    #             "doc_type",
-    #             "in",
-    #             [
-    #                 "Material Request",
-    #                 "Purchase Order",
-    #                 "Purchase Receipt",
-    #                 "Purchase Invoice",
-    #             ],
-    #         ],
-    #     ],
-    # },
+    "Donor Address State",
+    "Workflow Action Master",
+    "Workflow State",
+    "Role",
+    {
+        "dt": "Workflow",
+        "filters": [
+            ["is_active", "=", 1],
+            [
+                "document_type",
+                "in",
+                [
+                    "Donation Receipt",
+                    "Item Creation Request",
+                    "Supplier Creation Request",
+                    "Purchase Order",
+                    "Donor ECS Creation Request",
+                ],
+            ],
+        ],
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [
+            [
+                "dt",
+                "in",
+                [
+                    "Material Request",
+                    "Purchase Order",
+                    "Purchase Receipt",
+                    "Purchase Invoice",
+                    "Journal Entry",
+                    "Customer",
+                    "Supplier",
+                ],
+            ],
+        ],
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [
+            [
+                "doc_type",
+                "in",
+                [
+                    "Material Request",
+                    "Purchase Order",
+                    "Purchase Receipt",
+                    "Purchase Invoice",
+                ],
+            ],
+        ],
+    },
     # {
     #     "dt": "Custom DocPerm",
     #     "filters": [
@@ -70,6 +70,6 @@ custom_fixtures = [
     #         ],
     #     ],
     # },
-    # "Custom DocPerm",
-    # "DJ Mode of Payment",
+    "Custom DocPerm",
+    "DJ Mode of Payment",
 ]
