@@ -14,6 +14,7 @@ app_color = "blue"
 app_email = "nrhd@hkm-group.org"
 app_license = "MIT"
 
+export_python_type_annotations = True
 
 # include js, css files in header of desk.html
 app_include_css = "hkmj-theme.bundle.css"
