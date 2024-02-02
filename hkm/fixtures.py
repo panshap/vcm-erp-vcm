@@ -4,6 +4,7 @@
 ### This file has to be dynamically changed everytime, we need to send some customisations to other sites.
 
 custom_fixtures = [
+    "Donor Address State",
     "Workflow Action Master",
     "Workflow State",
     "Role",
@@ -35,6 +36,9 @@ custom_fixtures = [
                     "Purchase Order",
                     "Purchase Receipt",
                     "Purchase Invoice",
+                    "Journal Entry",
+                    "Customer",
+                    "Supplier",
                 ],
             ],
         ],
@@ -54,4 +58,18 @@ custom_fixtures = [
             ],
         ],
     },
+    # {
+    #     "dt": "Custom DocPerm",
+    #     "filters": [
+    #         [
+    #             "parent",
+    #             "in",
+    #             [
+    #                 "Account",
+    #             ],
+    #         ],
+    #     ],
+    # },
+    "Custom DocPerm",
+    "DJ Mode of Payment",
 ]

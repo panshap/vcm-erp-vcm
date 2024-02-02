@@ -9,7 +9,9 @@ system_admin = "nrhd@hkm-group.org"
 
 def fetch_address_from_creation_request(self, method):
     if self.flags.is_new_doc and self.get("supplier_creation_request"):
-        address = frappe.get_doc("Supplier Creation Request", self.get("supplier_creation_request"))
+        address = frappe.get_doc(
+            "Supplier Creation Request", self.get("supplier_creation_request")
+        )
         self.address_line1 = address.address_line_1
         self.address_line2 = address.address_line_2
         self.pincode = address.pincode
@@ -32,7 +34,9 @@ def fetch_address_from_creation_request(self, method):
         self.db_set("primary_address", address_display)
 
         # Notify Requestor
-        sc_request = frappe.get_doc("Supplier Creation Request", self.get("supplier_creation_request"))
+        sc_request = frappe.get_doc(
+            "Supplier Creation Request", self.get("supplier_creation_request")
+        )
 
         message = success_mail(self, sc_request)
         email_args = {
@@ -46,7 +50,13 @@ def fetch_address_from_creation_request(self, method):
             "delayed": False,
             "sender": self.owner,
         }
-        enqueue(method=frappe.sendmail, queue="short", timeout=300, is_async=True, **email_args)
+        enqueue(
+            method=frappe.sendmail,
+            queue="short",
+            timeout=300,
+            is_async=True,
+            **email_args
+        )
 
         apply_workflow(sc_request, "Confirm as Done")
         frappe.db.commit()
@@ -63,7 +73,8 @@ def make_address(args, is_primary_address=1):
     if reqd_fields:
         msg = _("Following fields are mandatory to create address:")
         frappe.throw(
-            "{0} <br><br> <ul>{1}</ul>".format(msg, "\n".join(reqd_fields)), title=_("Missing Values Required")
+            "{0} <br><br> <ul>{1}</ul>".format(msg, "\n".join(reqd_fields)),
+            title=_("Missing Values Required"),
         )
 
     address = frappe.get_doc(
@@ -79,7 +90,9 @@ def make_address(args, is_primary_address=1):
             "gst_category": args.get("gst_category"),
             "gstin": args.get("gstin"),
             "phone": args.get("phone"),
-            "links": [{"link_doctype": args.get("doctype"), "link_name": args.get("name")}],
+            "links": [
+                {"link_doctype": args.get("doctype"), "link_name": args.get("name")}
+            ],
         }
     ).insert()
 
@@ -87,9 +100,15 @@ def make_address(args, is_primary_address=1):
 
 
 def success_mail(supplier, sc_request):
-    time_taken, postfix = time_diff_in_hours(supplier.creation, sc_request.creation), "hours"
+    time_taken, postfix = (
+        time_diff_in_hours(supplier.creation, sc_request.creation),
+        "hours",
+    )
     if time_taken < 1:
-        time_taken, postfix = time_diff_in_seconds(supplier.creation, sc_request.creation) / 60, "minutes"
+        time_taken, postfix = (
+            time_diff_in_seconds(supplier.creation, sc_request.creation) / 60,
+            "minutes",
+        )
     elif time_taken > 23:
         time_taken, postfix = date_diff(supplier.creation, sc_request.creation), "days"
     time_taken = flt(time_taken, 2)
@@ -115,10 +134,16 @@ def success_mail(supplier, sc_request):
     return message
 
 
-item_supplier_admin = "Item & Supplier Creator"
+item_supplier_admin = "Item Manager"
 
 
 def creation_from_gstin(self, method):
-    if self.is_new() and not self.get("gstin") and not item_supplier_admin in frappe.get_roles(frappe.session.user):
-        frappe.throw("You are not allowed to create a Supplier without GSTIN. Raise through Supplier Creation Request.")
+    if (
+        self.is_new()
+        and not self.get("gstin")
+        and not item_supplier_admin in frappe.get_roles(frappe.session.user)
+    ):
+        frappe.throw(
+            "You are not allowed to create a Supplier without GSTIN. Raise through Supplier Creation Request."
+        )
     return

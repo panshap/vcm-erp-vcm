@@ -9,6 +9,95 @@ from frappe.desk.page.setup_wizard.setup_wizard import make_records
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
 
+def create_seva_type():
+    for s in frappe.db.sql(
+        "SELECT company,seva_type FROM `tabDonation Receipt` WHERE seva_type IS NOT NULL GROUP BY company,seva_type"
+    ):
+        if not frappe.db.exists("Seva Type", {"company": s[0], "seva_name": s[1]}):
+            doc = frappe.get_doc(
+                {
+                    "doctype": "Seva Type",
+                    "company": s[0],
+                    "seva_name": s[1],
+                    "80g_applicable": 1,
+                    # 'patronship_allowed':1,
+                    "include_in_analysis": 1,
+                    # 'csr_allowed':1
+                }
+            )
+            doc.insert()
+    frappe.db.commit()
+
+
+def create_seva_subtype():
+    for s in frappe.db.sql(
+        "SELECT seva_subtype FROM `tabDonation Receipt` WHERE seva_subtype IS NOT NULL GROUP BY seva_subtype"
+    ):
+        if not frappe.db.exists("Seva Subtype", {"seva_name": s[0]}):
+            doc = frappe.get_doc(
+                {
+                    "doctype": "Seva Subtype",
+                    # "company": s[0],
+                    "seva_name": s[0],
+                    "80g_applicable": 1,
+                    # 'patronship_allowed':1,
+                    "include_in_analysis": 1,
+                    # 'csr_allowed':1
+                }
+            )
+            doc.insert()
+    frappe.db.commit()
+
+
+def set_seva_type():
+    for r in frappe.get_all(
+        "Donation Receipt",
+        filters={
+            "company": "Hare Krishna Movement Vrindavan",
+            "seva_type": ["is", "not set"],
+        },
+        pluck="name",
+    ):
+        print(r)
+        frappe.db.set_value("Donation Receipt", r, "seva_type", "GEN - HKMV")
+
+    for r in frappe.get_all(
+        "Donation Receipt",
+        filters={
+            "company": "Vrindavan Chandrodaya Mandir Trust",
+            "seva_type": ["is", "not set"],
+        },
+        pluck="name",
+    ):
+        frappe.db.set_value("Donation Receipt", r, "seva_type", "GNRL - VCMT")
+
+    frappe.db.commit()
+
+
+def set_seva_type_for_no_company_tagged():
+    companies_abbr = {}
+    for c in frappe.get_all("Company", fields=["company_name", "abbr"]):
+        companies_abbr.setdefault(c["company_name"], c["abbr"])
+    for r in frappe.get_all(
+        "Donation Receipt", fields=["name", "seva_type", "company"]
+    ):
+        if r["seva_type"] and "-" not in r["seva_type"]:
+            new_seva_type = r["seva_type"] + " - " + companies_abbr[r["company"]]
+            frappe.db.set_value("Donation Receipt", r, "seva_type", new_seva_type)
+    frappe.db.commit()
+
+
+def set_full_name():
+    for r in frappe.get_all(
+        "Donation Receipt",
+        fields=["name", "donor"],
+    ):
+        full_name = frappe.db.get_value("Donor", r["donor"], "full_name")
+        frappe.db.set_value("Donation Receipt", r, "full_name", full_name)
+
+    frappe.db.commit()
+
+
 def correct_names_patron():
     # for p in frappe.get_all("Patron",pluck = "name"):
     #     patron_doc = frappe.get_doc("Patron",p)
@@ -34,7 +123,7 @@ def query():
     # update_barcodes()
     # update_special_pujas()
     # return upload_mumbai_data()
-    # update_current_preacher()
+    update_current_preacher()
     return
 
 

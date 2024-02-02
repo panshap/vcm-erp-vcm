@@ -1,10 +1,12 @@
 import json
+from hkm.divine_dishes.utils import validate_address
 import frappe
 import razorpay
 
 
 @frappe.whitelist()
 def create_razorpay_order(data):
+    validate_address(frappe.session.user)
     data = json.loads(data)
     settings = frappe.get_single("Divine Dishes Settings")
     RAZORPAY_ID = settings.razorpay_id

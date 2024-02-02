@@ -9,6 +9,7 @@
  "field_order": [
   "gstin",
   "pan",
+  "aadhar_no",
   "supplier_name",
   "supplier_type",
   "supplier_group",
@@ -115,11 +116,18 @@
    "label": "Supplier Group",
    "options": "Supplier Group",
    "reqd": 1
+  },
+  {
+   "depends_on": "eval: !doc.gstin",
+   "fieldname": "aadhar_no",
+   "fieldtype": "Data",
+   "label": "Aadhar No",
+   "mandatory_depends_on": "'ERP Coordinator' in frappe.get_roles(frappe.session.user)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-06 13:05:08.870425",
+ "modified": "2024-01-19 19:57:15.939946",
  "modified_by": "Administrator",
  "module": "ERPNext - Custom",
  "name": "Supplier Creation Request",

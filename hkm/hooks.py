@@ -14,6 +14,7 @@ app_color = "blue"
 app_email = "nrhd@hkm-group.org"
 app_license = "MIT"
 
+export_python_type_annotations = True
 
 # include js, css files in header of desk.html
 app_include_css = "hkmj-theme.bundle.css"
@@ -164,6 +165,7 @@ doc_events = {
     },
     "Item": {
         "before_insert": "hkm.erpnext___custom.extend.item.item_taxes_and_income_account_set",  # Before the document first time inserted, this will not run always whenever some changes are made to the document
+        "before_insert": "hkm.erpnext___custom.extend.item.update_item_code_in_barcodes",
         "after_insert": "hkm.erpnext___custom.extend.item.item_creation_update",
     },
     "Purchase Invoice": {

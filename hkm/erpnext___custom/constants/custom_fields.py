@@ -1,498 +1,426 @@
 CUSTOM_FIELDS = {
   "Journal Entry": [
     {
-      "DocType": "Journal Entry",
-      "Field Type": "Data",
-      "Label": "Bank Statement Name",
-      "Fieldname": "bank_statement_name",
-      "Insert After": "donation_receipt",
-      "Read Only": 1,
-      "Hidden": 1,
-      "Translatable": 1
-    },
-    {
-      "DocType": "Journal Entry",
-      "Field Type": "Link",
-      "Label": "Donation Receipt",
-      "Fieldname": "donation_receipt",
-      "Insert After": "tax_withholding_category",
-      "Options": "Donation Receipt"
+      "dt": "Journal Entry",
+      "fieldtype": "Data",
+      "label": "Bank Statement Name",
+      "fieldname": "bank_statement_name",
+      "insert_after": "donation_receipt",
+      "read_only": 1,
+      "hidden": 1,
+      "translatable": 1
     }
+    # {
+    #   "dt": "Journal Entry",
+    #   "fieldtype": "Link",
+    #   "label": "Donation Receipt",
+    #   "fieldname": "donation_receipt",
+    #   "insert_after": "tax_withholding_category",
+    #   "options": "Donation Receipt"
+    # }
   ],
   "Purchase Invoice": [
     {
-      "DocType": "Purchase Invoice",
-      "Field Type": "Link",
-      "Label": "Default Difference Account",
-      "Fieldname": "default_difference_account",
-      "Insert After": "sec_warehouse",
-      "Options": "Account"
+      "dt": "Purchase Invoice",
+      "fieldtype": "Link",
+      "label": "Default Difference Account",
+      "fieldname": "default_difference_account",
+      "insert_after": "sec_warehouse",
+      "options": "Account"
     },
     {
-      "DocType": "Purchase Invoice",
-      "Field Type": "Link",
-      "Label": "Department",
-      "Fieldname": "department",
-      "Insert After": "amended_from",
-      "Options": "Department",
-      "Read Only": 1,
-      "In Standard Filter": 1
+      "dt": "Purchase Invoice",
+      "fieldtype": "Link",
+      "label": "Department",
+      "fieldname": "department",
+      "insert_after": "amended_from",
+      "options": "Department",
+      "read_only": 1,
+      "in_standard_filter": 1
     }
   ],
   "Material Request Item": [
     {
-      "DocType": "Material Request Item",
-      "Field Type": "Data",
-      "Label": "Item Type",
-      "Fieldname": "item_type",
-      "Insert After": "item_name",
-      "Read Only": 1,
-      "In List View": 1,
-      "Translatable": 1
+      "dt": "Material Request Item",
+      "fieldtype": "Data",
+      "label": "Item Type",
+      "fieldname": "item_type",
+      "insert_after": "item_name",
+      "read_only": 1,
+      "in_list_view": 1,
+      "translatable": 1
     },
     {
-      "DocType": "Material Request Item",
-      "Field Type": "Data",
-      "Label": "Item Description",
-      "Fieldname": "item_description",
-      "Insert After": "section_break_4",
+      "dt": "Material Request Item",
+      "fieldtype": "Data",
+      "label": "Item Description",
+      "fieldname": "item_description",
+      "insert_after": "section_break_4",
       "Length": 256,
-      "Translatable": 1
+      "translatable": 1
     }
   ],
   "Purchase Order Item": {
-    "DocType": "Purchase Order Item",
-    "Field Type": "Data",
-    "Label": "Item Type",
-    "Fieldname": "item_type",
-    "Insert After": "item_name",
-    "Read Only": 1,
-    "In List View": 1,
-    "Translatable": 1
+    "dt": "Purchase Order Item",
+    "fieldtype": "Data",
+    "label": "Item Type",
+    "fieldname": "item_type",
+    "insert_after": "item_name",
+    "read_only": 1,
+    "in_list_view": 1,
+    "translatable": 1
   },
   "Item Tax Template": {
-    "DocType": "Item Tax Template",
-    "Field Type": "Int",
-    "Label": "Cumulative Tax",
-    "Fieldname": "cumulative_tax",
-    "Insert After": "disabled",
-    "Non Negative": 1
+    "dt": "Item Tax Template",
+    "fieldtype": "Int",
+    "label": "Cumulative Tax",
+    "fieldname": "cumulative_tax",
+    "insert_after": "disabled"
   },
   "Item": [
     {
-      "DocType": "Item",
-      "Field Type": "Link",
-      "Label": "Item Creation Request",
-      "Fieldname": "item_creation_request",
-      "Insert After": "total_projected_qty",
-      "Options": "Item Creation Request",
-      "Read Only": 1
+      "dt": "Item",
+      "fieldtype": "Link",
+      "label": "Item Creation Request",
+      "fieldname": "item_creation_request",
+      "insert_after": "total_projected_qty",
+      "options": "Item Creation Request",
+      "read_only": 1
     },
     {
-      "DocType": "Item",
-      "Field Type": "Data",
-      "Label": "Selling Rate with GST",
-      "Fieldname": "selling_rate_with_gst",
-      "Insert After": "standard_rate",
-      "Read Only": 1,
-      "Translatable": 1
+      "dt": "Item",
+      "fieldtype": "Data",
+      "label": "Selling Rate with GST",
+      "fieldname": "selling_rate_with_gst",
+      "insert_after": "standard_rate",
+      "read_only": 1,
+      "translatable": 1
     }
   ],
   "Item Creation Request": {
-    "DocType": "Item Creation Request",
-    "Field Type": "Link",
-    "Label": "Workflow State",
-    "Fieldname": "workflow_state",
-    "Options": "Workflow State",
-    "Hidden": 1,
-    "No Copy": 1,
-    "Allow on Submit": 1
+    "dt": "Item Creation Request",
+    "fieldtype": "Link",
+    "label": "Workflow State",
+    "fieldname": "workflow_state",
+    "options": "Workflow State",
+    "hidden": 1,
+    "no_copy": 1,
+    "allow_on_submit": 1
   },
   "Supplier Creation Request": {
-    "DocType": "Supplier Creation Request",
-    "Field Type": "Link",
-    "Label": "Workflow State",
-    "Fieldname": "workflow_state",
-    "Options": "Workflow State",
-    "Hidden": 1,
-    "No Copy": 1,
-    "Allow on Submit": 1
+    "dt": "Supplier Creation Request",
+    "fieldtype": "Link",
+    "label": "Workflow State",
+    "fieldname": "workflow_state",
+    "options": "Workflow State",
+    "hidden": 1,
+    "no_copy": 1,
+    "allow_on_submit": 1
   },
-  "Donation Receipt": {
-    "DocType": "Donation Receipt",
-    "Field Type": "Link",
-    "Label": "Workflow State",
-    "Fieldname": "workflow_state",
-    "Options": "Workflow State",
-    "Hidden": 1,
-    "No Copy": 1,
-    "Allow on Submit": 1
-  },
+  # "Donation Receipt": {
+  #   "dt": "Donation Receipt",
+  #   "fieldtype": "Link",
+  #   "label": "Workflow State",
+  #   "fieldname": "workflow_state",
+  #   "options": "Workflow State",
+  #   "hidden": 1,
+  #   "no_copy": 1,
+  #   "allow_on_submit": 1
+  # },
   "Task": [
     {
-      "DocType": "Task",
-      "Field Type": "Data",
-      "Label": "Location",
-      "Fieldname": "location",
-      "Insert After": "completed_by",
-      "In List View": 1,
-      "In Standard Filter": 1,
-      "Translatable": 1
+      "dt": "Task",
+      "fieldtype": "Data",
+      "label": "Location",
+      "fieldname": "location",
+      "insert_after": "completed_by",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "translatable": 1
     },
     {
-      "DocType": "Task",
-      "Field Type": "Select",
-      "Label": "workflow_state",
-      "Fieldname": "workflow_state",
-      "Insert After": "project",
-      "Options": "Draft\nAcknowledged\nCompleted\nUser Confirmed",
-      "Hidden": 1,
-      "In Standard Filter": 1,
-      "Translatable": 1
+      "dt": "Task",
+      "fieldtype": "Select",
+      "label": "workflow_state",
+      "fieldname": "workflow_state",
+      "insert_after": "project",
+      "options": "Draft\nAcknowledged\nCompleted\nUser Confirmed",
+      "hidden": 1,
+      "in_standard_filter": 1,
+      "translatable": 1
     },
     {
-      "DocType": "Task",
-      "Field Type": "Data",
-      "Label": "Contact Mobile No",
-      "Fieldname": "contact_mobile_no",
-      "Insert After": "contact_person",
-      "Translatable": 1
+      "dt": "Task",
+      "fieldtype": "Data",
+      "label": "Contact Mobile No",
+      "fieldname": "contact_mobile_no",
+      "insert_after": "contact_person",
+      "translatable": 1
     },
     {
-      "DocType": "Task",
-      "Field Type": "Data",
-      "Label": "Contact Person",
-      "Fieldname": "contact_person",
-      "Insert After": "subject",
-      "Translatable": 1
+      "dt": "Task",
+      "fieldtype": "Data",
+      "label": "Contact Person",
+      "fieldname": "contact_person",
+      "insert_after": "subject",
+      "translatable": 1
     },
     {
-      "DocType": "Task",
-      "Field Type": "Select",
-      "Label": "To Department",
-      "Fieldname": "to_department",
-      "Options": "Maintenance\nIT",
-      "In Standard Filter": 1,
-      "Translatable": 1
+      "dt": "Task",
+      "fieldtype": "Select",
+      "label": "To Department",
+      "fieldname": "to_department",
+      "options": "Maintenance\nIT",
+      "in_standard_filter": 1,
+      "translatable": 1
     }
   ],
   "Stock Entry": {
-    "DocType": "Stock Entry",
-    "Field Type": "Link",
-    "Label": "Default Difference Account",
-    "Fieldname": "default_difference_account",
-    "Insert After": "source_address_display",
-    "Options": "Account",
-    "Mandatory Depends On": "eval:doc.purpose=='Material Issue' || doc.purpose=='Material Receipt'"
+    "dt": "Stock Entry",
+    "fieldtype": "Link",
+    "label": "Default Difference Account",
+    "fieldname": "default_difference_account",
+    "insert_after": "source_address_display",
+    "options": "Account",
+    "mandatory_depends_on": "eval:doc.purpose=='Material Issue' || doc.purpose=='Material Receipt'"
   },
   "Purchase Receipt": {
-    "DocType": "Purchase Receipt",
-    "Field Type": "Link",
-    "Label": "Department",
-    "Fieldname": "department",
-    "Insert After": "is_return",
-    "Options": "Department",
-    "Read Only": 1
+    "dt": "Purchase Receipt",
+    "fieldtype": "Link",
+    "label": "Department",
+    "fieldname": "department",
+    "insert_after": "is_return",
+    "options": "Department",
+    "read_only": 1
   },
   "Purchase Order": [
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Long Text",
-      "Label": "Extra Description",
-      "Fieldname": "extra_description",
-      "Insert After": "items"
+      "dt": "Purchase Order",
+      "fieldtype": "Long Text",
+      "label": "Extra Description",
+      "fieldname": "extra_description",
+      "insert_after": "items"
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Attach",
-      "Label": "Comparison Sheet",
-      "Fieldname": "comparison_sheet",
-      "Insert After": "department",
+      "dt": "Purchase Order",
+      "fieldtype": "Attach",
+      "label": "Comparison Sheet",
+      "fieldname": "comparison_sheet",
+      "insert_after": "department",
       "Allow in Quick Entry": 1
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Link",
-      "Label": "Department",
-      "Fieldname": "department",
-      "Insert After": "company",
-      "Options": "Department",
-      "Fetch From": "material_request.department",
-      "Is Mandatory Field": 1
+      "dt": "Purchase Order",
+      "fieldtype": "Link",
+      "label": "Department",
+      "fieldname": "department",
+      "insert_after": "company",
+      "options": "Department",
+      "fetch_from": "material_request.department",
+      "reqd": 1
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Data",
-      "Label": "Final Approving Authority",
-      "Fieldname": "final_approving_authority",
-      "Insert After": "first_approving_authority",
-      "Options": "Email",
-      "Read Only": 1,
-      "Translatable": 1
+      "dt": "Purchase Order",
+      "fieldtype": "Data",
+      "label": "Final Approving Authority",
+      "fieldname": "final_approving_authority",
+      "insert_after": "first_approving_authority",
+      "options": "Email",
+      "read_only": 1,
+      "translatable": 1
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Data",
-      "Label": "First Approving Authority",
-      "Fieldname": "first_approving_authority",
-      "Insert After": "recommended_by",
-      "Options": "Email",
-      "Read Only": 1,
-      "Translatable": 1
+      "dt": "Purchase Order",
+      "fieldtype": "Data",
+      "label": "First Approving Authority",
+      "fieldname": "first_approving_authority",
+      "insert_after": "recommended_by",
+      "options": "Email",
+      "read_only": 1,
+      "translatable": 1
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Data",
-      "Label": "Recommended By",
-      "Fieldname": "recommended_by",
-      "Insert After": "alm_column_break",
-      "Options": "Email",
-      "Read Only": 1,
-      "Translatable": 1
+      "dt": "Purchase Order",
+      "fieldtype": "Data",
+      "label": "Recommended By",
+      "fieldname": "recommended_by",
+      "insert_after": "alm_column_break",
+      "options": "Email",
+      "read_only": 1,
+      "translatable": 1
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Column Break",
-      "Fieldname": "alm_column_break",
-      "Insert After": "checked_by"
+      "dt": "Purchase Order",
+      "fieldtype": "Column Break",
+      "fieldname": "alm_column_break",
+      "insert_after": "checked_by"
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Data",
-      "Label": "Checked By",
-      "Fieldname": "checked_by",
-      "Insert After": "prepared_by",
-      "Options": "Email",
-      "Read Only": 1,
-      "Translatable": 1
+      "dt": "Purchase Order",
+      "fieldtype": "Data",
+      "label": "Checked By",
+      "fieldname": "checked_by",
+      "insert_after": "prepared_by",
+      "options": "Email",
+      "read_only": 1,
+      "translatable": 1
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Data",
-      "Label": "Prepared By",
-      "Fieldname": "prepared_by",
-      "Insert After": "alm",
-      "Options": "Email",
-      "Read Only": 1,
-      "Translatable": 1
+      "dt": "Purchase Order",
+      "fieldtype": "Data",
+      "label": "Prepared By",
+      "fieldname": "prepared_by",
+      "insert_after": "alm",
+      "options": "Email",
+      "read_only": 1,
+      "translatable": 1
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Section Break",
-      "Label": "ALM",
-      "Fieldname": "alm",
-      "Insert After": "schedule_date"
+      "dt": "Purchase Order",
+      "fieldtype": "Section Break",
+      "label": "ALM",
+      "fieldname": "alm",
+      "insert_after": "schedule_date"
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Data",
-      "Label": "One Time Vendor Address",
-      "Fieldname": "one_time_vendor_address",
-      "Insert After": "one_time_vendor_section",
-      "Translatable": 1
+      "dt": "Purchase Order",
+      "fieldtype": "Data",
+      "label": "One Time Vendor Address",
+      "fieldname": "one_time_vendor_address",
+      "insert_after": "one_time_vendor_section",
+      "translatable": 1
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Section Break",
-      "Label": "One Time Vendor Details",
-      "Fieldname": "one_time_vendor_section",
-      "Insert After": "type",
-      "Depends On": "eval: doc.supplier == 'One time Vendor'"
+      "dt": "Purchase Order",
+      "fieldtype": "Section Break",
+      "label": "One Time Vendor Details",
+      "fieldname": "one_time_vendor_section",
+      "insert_after": "type",
+      "depends_on": "eval: doc.supplier == 'One time Vendor'"
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Select",
-      "Label": "Type",
-      "Fieldname": "type",
-      "Insert After": "supplier",
-      "Options": "REVEX\nCAPEX",
-      "Is Mandatory Field": 1,
-      "In Standard Filter": 1,
-      "Translatable": 1,
-      "Field Description": "Type of Expenditure.\nCAPEX is an amount spent to acquire or improve a long-term asset such as any electronics equipment.\nREVEX refers to expenses incurred in the course of ordinary business, such as sales, general and administrative expenses."
+      "dt": "Purchase Order",
+      "fieldtype": "Select",
+      "label": "Type",
+      "fieldname": "type",
+      "insert_after": "supplier",
+      "options": "REVEX\nCAPEX",
+      "reqd": 1,
+      "in_standard_filter": 1,
+      "translatable": 1,
+      "description": "Type of Expenditure.\nCAPEX is an amount spent to acquire or improve a long-term asset such as any electronics equipment.\nREVEX refers to expenses incurred in the course of ordinary business, such as sales, general and administrative expenses."
     },
     {
-      "DocType": "Purchase Order",
-      "Field Type": "Link",
-      "Label": "Workflow State",
-      "Fieldname": "workflow_state",
-      "Options": "Workflow State",
-      "Hidden": 1,
-      "No Copy": 1,
-      "Allow on Submit": 1,
-      "In List View": 1,
-      "In Standard Filter": 1
+      "dt": "Purchase Order",
+      "fieldtype": "Link",
+      "label": "Workflow State",
+      "fieldname": "workflow_state",
+      "options": "Workflow State",
+      "hidden": 1,
+      "no_copy": 1,
+      "allow_on_submit": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1
     }
   ],
   "POS Invoice": {
-    "DocType": "POS Invoice",
-    "Field Type": "Data",
-    "Label": "Company Abbreviation",
-    "Fieldname": "company_abbreviation",
-    "Insert After": "against_income_account",
-    "Fetch From": "company.abbr",
-    "Hidden": 1,
-    "Translatable": 1
+    "dt": "POS Invoice",
+    "fieldtype": "Data",
+    "label": "Company Abbreviation",
+    "fieldname": "company_abbreviation",
+    "insert_after": "against_income_account",
+    "fetch_from": "company.abbr",
+    "hidden": 1,
+    "translatable": 1
   },
   "Material Request": [
     {
-      "DocType": "Material Request",
-      "Field Type": "Link",
-      "Label": "Material Purchase Link",
-      "Fieldname": "material_purchase_link",
-      "Insert After": "department",
-      "Options": "Material Request",
-      "Depends On": "eval:doc.material_request_type=='Material Issue'",
-      "Allow on Submit": 1,
-      "Permission Level": 2
+      "dt": "Material Request",
+      "fieldtype": "Link",
+      "label": "Material Purchase Link",
+      "fieldname": "material_purchase_link",
+      "insert_after": "department",
+      "options": "Material Request",
+      "depends_on": "eval:doc.material_request_type=='Material Issue'",
+      "allow_on_submit": 1,
+      "permlevel": 2
     },
     {
-      "DocType": "Material Request",
-      "Field Type": "Link",
-      "Label": "Department",
-      "Fieldname": "department",
-      "Insert After": "company",
-      "Options": "Department",
-      "Is Mandatory Field": 1
+      "dt": "Material Request",
+      "fieldtype": "Link",
+      "label": "Department",
+      "fieldname": "department",
+      "insert_after": "company",
+      "options": "Department",
+      "reqd": 1
     },
     {
-      "DocType": "Material Request",
-      "Field Type": "Long Text",
-      "Label": "Purpose Description",
-      "Fieldname": "description",
-      "Insert After": "purpose",
-      "Field Description": "Write down the description of PURPOSE, if detailing is required."
+      "dt": "Material Request",
+      "fieldtype": "Long Text",
+      "label": "Purpose Description",
+      "fieldname": "description",
+      "insert_after": "purpose",
+      "description": "Write down the description of PURPOSE, if detailing is required."
     },
     {
-      "DocType": "Material Request",
-      "Field Type": "Data",
-      "Label": "Purpose Subject",
-      "Fieldname": "purpose",
-      "Insert After": "for_a_work_order",
-      "Is Mandatory Field": 1,
-      "In Standard Filter": 1,
-      "Translatable": 1
+      "dt": "Material Request",
+      "fieldtype": "Data",
+      "label": "Purpose Subject",
+      "fieldname": "purpose",
+      "insert_after": "for_a_work_order",
+      "reqd": 1,
+      "in_standard_filter": 1,
+      "translatable": 1
     },
     {
-      "DocType": "Material Request",
-      "Field Type": "Check",
-      "Label": "For a Work Order",
-      "Fieldname": "for_a_work_order",
-      "Insert After": "material_request_type",
-      "Depends On": "eval:doc.material_request_type == 'Purchase'",
-      "In Standard Filter": 1,
-      "Bold": 1
+      "dt": "Material Request",
+      "fieldtype": "Check",
+      "label": "For a Work Order",
+      "fieldname": "for_a_work_order",
+      "insert_after": "material_request_type",
+      "depends_on": "eval:doc.material_request_type == 'Purchase'",
+      "in_standard_filter": 1,
+      "bold": 1
     },
     {
-      "DocType": "Material Request",
-      "Field Type": "Check",
-      "Label": "Completed",
-      "Fieldname": "completed",
-      "Insert After": "naming_series",
-      "Read Only Depends On": "eval:doc.completed != user",
-      "Allow on Submit": 1
-    }
-  ],
-  "Journal Entry Account": [
-    {
-      "DocType": "Journal Entry Account",
-      "Field Type": "Data",
-      "Label": "Online Payment Reference",
-      "Fieldname": "online_payment_reference",
-      "Insert After": "suspense_jv",
-      "Allow on Submit": 1,
-      "Translatable": 1
-    },
-    {
-      "DocType": "Journal Entry Account",
-      "Field Type": "Link",
-      "Label": "Suspense JV",
-      "Fieldname": "suspense_jv",
-      "Insert After": "receipt_date",
-      "Options": "Journal Entry",
-      "Allow on Submit": 1
-    },
-    {
-      "DocType": "Journal Entry Account",
-      "Field Type": "Date",
-      "Label": "Receipt Date",
-      "Fieldname": "receipt_date",
-      "Insert After": "column_break_34",
-      "Depends On": "eval:doc.is_a_donation==true"
-    },
-    {
-      "DocType": "Journal Entry Account",
-      "Field Type": "Column Break",
-      "Fieldname": "column_break_34",
-      "Insert After": "donor_name"
-    },
-    {
-      "DocType": "Journal Entry Account",
-      "Field Type": "Data",
-      "Label": "Donor Name",
-      "Fieldname": "donor_name",
-      "Insert After": "dr_no",
-      "Depends On": "eval:doc.is_a_donation==true",
-      "Translatable": 1
-    },
-    {
-      "DocType": "Journal Entry Account",
-      "Field Type": "Data",
-      "Label": "DR No",
-      "Fieldname": "dr_no",
-      "Insert After": "is_folk",
-      "Depends On": "eval:doc.is_a_donation==true",
-      "In List View": 1,
-      "Translatable": 1
-    },
-    {
-      "DocType": "Journal Entry Account",
-      "Field Type": "Check",
-      "Label": "Is a Donation",
-      "Fieldname": "is_a_donation",
-      "Insert After": "donation_reference",
-      "Allow on Submit": 1,
-      "In List View": 1,
-      "In Standard Filter": 1
-    },
-    {
-      "DocType": "Journal Entry Account",
-      "Field Type": "Section Break",
-      "Label": "Donation Reference",
-      "Fieldname": "donation_reference",
-      "Insert After": "against_account",
-      "Bold": 1
+      "dt": "Material Request",
+      "fieldtype": "Check",
+      "label": "Completed",
+      "fieldname": "completed",
+      "insert_after": "naming_series",
+      "read_only_depends_on": "eval:doc.completed != user",
+      "allow_on_submit": 1
     }
   ],
   "Item Group": [
     {
-      "DocType": "Item Group",
-      "Field Type": "Int",
-      "Label": "Live Counter No",
-      "Fieldname": "live_counter_no",
-      "Insert After": "is_group",
+      "dt": "Item Group",
+      "fieldtype": "Int",
+      "label": "Live Counter No",
+      "fieldname": "live_counter_no",
+      "insert_after": "is_group",
       "Non Negative": 1,
-      "In List View": 1,
-      "Field Description": "To be used for Restaurant POS Billing"
+      "in_list_view": 1,
+      "description": "To be used for Restaurant POS Billing"
     },
     {
-      "DocType": "Item Group",
-      "Field Type": "Data",
-      "Label": "Item Code Series",
-      "Fieldname": "item_code_series",
-      "Insert After": "image",
-      "Mandatory Depends On": "eval:!doc.is_group",
-      "In List View": 1,
+      "dt": "Item Group",
+      "fieldtype": "Data",
+      "label": "Item Code Series",
+      "fieldname": "item_code_series",
+      "insert_after": "image",
+      "mandatory_depends_on": "eval:!doc.is_group",
+      "in_list_view": 1,
       "Allow in Quick Entry": 1,
-      "Translatable": 1
+      "translatable": 1
     }
   ],
   "Employee": {
-    "DocType": "Employee",
-    "Field Type": "Data",
-    "Label": "Father Or Spouse Name",
-    "Fieldname": "father_or_spouse_name",
-    "Insert After": "employee_name",
-    "Translatable": 1
+    "dt": "Employee",
+    "fieldtype": "Data",
+    "label": "Father Or Spouse Name",
+    "fieldname": "father_or_spouse_name",
+    "insert_after": "employee_name",
+    "translatable": 1
   }
 }
