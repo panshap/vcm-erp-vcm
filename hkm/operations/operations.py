@@ -123,7 +123,7 @@ def query():
     # update_barcodes()
     # update_special_pujas()
     # return upload_mumbai_data()
-    update_current_preacher()
+    # update_current_preacher()
     return
 
 

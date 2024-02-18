@@ -81,7 +81,6 @@ website_generators = ["DD User Address"]
 # add methods and filters to jinja environment
 jinja = {
     "methods": ["hkm.ahmedabad.custom.get_purchase_order_details"]
-    # "filters": "dhananjaya.utils.jinja_filters"
 }
 
 
