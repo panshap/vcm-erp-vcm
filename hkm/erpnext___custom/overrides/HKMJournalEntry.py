@@ -20,7 +20,7 @@ class HKMJournalEntry(JournalEntry):
 
     def validate(self):
         super(HKMJournalEntry, self).validate()
-        self.validate_dr_number()
+        # self.validate_dr_number()
         # Based on Date, Reference No.,
         # self.validate_duplicate_entry()
 
@@ -105,36 +105,36 @@ class HKMJournalEntry(JournalEntry):
 
         validate_gst_entry(self)
 
-    def validate_dr_number(self):
-        dr_nos = [d.dr_no for d in self.get("accounts") if d.dr_no]
-        if not dr_nos:
-            return
+    # def validate_dr_number(self):
+    #     dr_nos = [d.dr_no for d in self.get("accounts") if d.dr_no]
+    #     if not dr_nos:
+    #         return
 
-        conditions = " and doc.company='%s' and doc.name !='%s'" % (self.company, self.name)
-        conditions += f""" and acc.dr_no in ({', '.join(frappe.db.escape(dr_no) for dr_no in dr_nos)})"""
-        dr_no_map = frappe._dict()
-        for d in frappe.db.sql(
-            """ select doc.name, acc.dr_no 
-			from `tabJournal Entry` doc, `tabJournal Entry Account` acc
-			where doc.docstatus < 2
-			and acc.parent = doc.name
-			and acc.debit > 0
-			{conditions}""".format(
-                conditions=conditions
-            ),
-            as_dict=1,
-        ):
-            dr_no_map.setdefault(d.dr_no, d.name)
+    #     conditions = " and doc.company='%s' and doc.name !='%s'" % (self.company, self.name)
+    #     conditions += f""" and acc.dr_no in ({', '.join(frappe.db.escape(dr_no) for dr_no in dr_nos)})"""
+    #     dr_no_map = frappe._dict()
+    #     for d in frappe.db.sql(
+    #         """ select doc.name, acc.dr_no 
+	# 		from `tabJournal Entry` doc, `tabJournal Entry Account` acc
+	# 		where doc.docstatus < 2
+	# 		and acc.parent = doc.name
+	# 		and acc.debit > 0
+	# 		{conditions}""".format(
+    #             conditions=conditions
+    #         ),
+    #         as_dict=1,
+    #     ):
+    #         dr_no_map.setdefault(d.dr_no, d.name)
 
-        for d in self.get("accounts"):
-            parent = dr_no_map.get(d.dr_no)
-            if parent:
-                frappe.throw(
-                    _(
-                        "Row #{0} DR Number {1} is already used in Journal Entry {2}.<br>Please enter different number."
-                    ).format(d.idx, frappe.bold(d.dr_no), frappe.bold(parent)),
-                    title=_("Duplicate DR Entry"),
-                )
+    #     for d in self.get("accounts"):
+    #         parent = dr_no_map.get(d.dr_no)
+    #         if parent:
+    #             frappe.throw(
+    #                 _(
+    #                     "Row #{0} DR Number {1} is already used in Journal Entry {2}.<br>Please enter different number."
+    #                 ).format(d.idx, frappe.bold(d.dr_no), frappe.bold(parent)),
+    #                 title=_("Duplicate DR Entry"),
+    #             )
 
     def reconcile_bank_transaction_for_entries_from_statement(self):
         if not self.get("bank_statement_name"):
