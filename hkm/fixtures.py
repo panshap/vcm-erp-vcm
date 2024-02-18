@@ -4,7 +4,6 @@
 ### This file has to be dynamically changed everytime, we need to send some customisations to other sites.
 
 custom_fixtures = [
-    "Donor Address State",
     "Workflow Action Master",
     "Workflow State",
     "Role",
