@@ -9,7 +9,13 @@ from datetime import timedelta
 
 class AppNotification(Document):
     def after_insert(self):
-        if self.notify:
+        # TODO Review this as it can't be dependent on Dhananjaya App.
+        # mobile_app_notifications = frappe.db.get_single_value(
+        #     "Dhananjaya Settings",
+        #     "mobile_app_notifications",
+        # )
+        mobile_app_notifications = 1
+        if self.notify and mobile_app_notifications:
             self.send_app_notification()
 
     def send_app_notification(self):

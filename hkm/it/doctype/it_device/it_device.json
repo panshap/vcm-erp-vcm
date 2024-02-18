@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "naming_series:",
  "creation": "2021-05-02 17:23:53.406038",
  "doctype": "DocType",
@@ -84,7 +85,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-02-18 17:53:36.982685",
+ "modified": "2024-02-03 21:57:51.515178",
  "modified_by": "Administrator",
  "module": "IT",
  "name": "IT Device",
