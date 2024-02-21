@@ -7,16 +7,23 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "details_section",
   "naming_series",
-  "company",
-  "category",
   "brand",
   "model",
+  "column_break_qlei",
+  "company",
+  "category",
+  "purchase_date",
   "section_break_4",
   "specifications",
   "section_break_6",
   "it_user",
-  "name1"
+  "location",
+  "name1",
+  "column_break_rlfr",
+  "age",
+  "bill"
  ],
  "fields": [
   {
@@ -50,7 +57,8 @@
   },
   {
    "fieldname": "section_break_4",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Specifications"
   },
   {
    "fieldname": "specifications",
@@ -81,11 +89,44 @@
    "label": "Company",
    "options": "Company",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_qlei",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "purchase_date",
+   "fieldtype": "Date",
+   "label": "Purchase Date"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location"
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fieldname": "bill",
+   "fieldtype": "Attach",
+   "label": "Bill"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "column_break_rlfr",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-03 21:57:51.515178",
+ "modified": "2024-02-19 20:49:26.780495",
  "modified_by": "Administrator",
  "module": "IT",
  "name": "IT Device",

@@ -1,3 +1,4 @@
+from hkm.erpnext___custom.doctype.whatsapp_settings.whatsapp_settings import send_whatsapp_using_template
 import frappe
 import random
 import string
@@ -23,8 +24,17 @@ def generate_otp(email):
         frappe.cache().set(key,otp,ex=600)
     send_otp_on_email(email,otp)
     if phone:
-        send_otp_on_phone(phone,otp)
-    
+        parameters = [
+             {
+             "type":"text",
+             "text":otp},
+             {
+             "type":"text",
+             "text":"Dhananjaya"     
+             }
+             ]
+        resp = send_whatsapp_using_template(phone,"mobile_app_authentication",parameters)
+        print(resp)
     return
 
 def send_otp_on_email(email,otp):
@@ -34,12 +44,6 @@ def send_otp_on_email(email,otp):
         message=f"Hare Krishna,<br>Please use the OTP below to login.<br><br><h4>{otp}</h4></a>",
         delayed=False
     )
-
-def send_otp_on_phone(phone,otp):
-    phone = phone.strip()[-10]
-    phone = f"+91{phone}"
-    pass
-
 
 @frappe.whitelist(allow_guest=True)
 def verify_otp(email,otp):

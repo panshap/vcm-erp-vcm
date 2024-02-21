@@ -16,13 +16,17 @@ class ITDevice(Document):
 		from frappe.types import DF
 		from hkm.it.doctype.it_device_specification.it_device_specification import ITDeviceSpecification
 
+		age: DF.Data | None
+		bill: DF.Attach | None
 		brand: DF.Link | None
 		category: DF.Link | None
 		company: DF.Link
 		it_user: DF.Link | None
+		location: DF.Data | None
 		model: DF.Data | None
 		name1: DF.Data | None
 		naming_series: DF.Literal["ITD-.YY.-"]
+		purchase_date: DF.Date | None
 		specifications: DF.Table[ITDeviceSpecification]
 	# end: auto-generated types
 	pass
